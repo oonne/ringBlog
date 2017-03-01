@@ -18,8 +18,10 @@ class m130524_201442_init extends Migration
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey(),
             'username' => $this->string()->notNull()->unique(),
+            'nickname' => $this->string()->notNull(),
             'password_hash' => $this->string()->notNull(),
             'auth_key' => $this->string(32)->notNull(),
+            'access_token' => $this->string(32)->notNull(),
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
@@ -28,6 +30,7 @@ class m130524_201442_init extends Migration
         // Initialize the user admin
         $admin = new User();
         $admin->username = 'admin';
+        $admin->nickname = '管理员';
         $admin->setPassword($admin->username);
         $admin->generateAuthKey();
         $admin->enable();

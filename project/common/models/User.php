@@ -2,19 +2,16 @@
 namespace common\models;
 
 use Yii;
-use yii\base\NotSupportedException;
-use yii\behaviors\TimestampBehavior;
-use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
+use yii\base\NotSupportedException;
 
 /**
  * User model
  *
  * @property integer $id
  * @property string $username
+ * @property string $nickname
  * @property string $password_hash
- * @property string $password_reset_token
- * @property string $email
  * @property string $auth_key
  * @property integer $status
  * @property integer $created_at
@@ -26,6 +23,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DISABLED = 0;
     const STATUS_ACTIVE = 10;
 
+    public $password;
 
     /**
      * @inheritdoc
@@ -38,24 +36,44 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
-    public function behaviors()
+    public function rules()
     {
         return [
-            TimestampBehavior::className(),
+            [['username'], 'required'],
+            [['username'], 'match', 'pattern' => '/^[A-Za-z_-][A-Za-z0-9_-]+$/'],
+            [['username'], 'string', 'max' => 32],
+            [['username'], 'unique'],
+
+            [['nickname'], 'required'],
+            [['nickname'], 'string', 'max' => 255],
+
+            ['status', 'default', 'value' => self::STATUS_ACTIVE],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DISABLED]],
+
+            [['password'], 'required', 'on' => ['creation']],
+            [['password'], 'trim'],
+            [['password'], 'match', 'pattern' => '/^\S+$/'],
+            [['password'], 'string', 'length' => [6, 32]],
+            [['password'], 'default'],
         ];
     }
 
     /**
      * @inheritdoc
      */
-    public function rules()
+    public function attributeLabels()
     {
         return [
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
+            'id' => 'User ID',
+            'username' => '用户名',
+            'nickname' => '昵称',
+            'password' => '密码',
+            'password_hash' => '密码hash',
+            'access_token' => 'Access Token',
+            'auth_key' => '记住密码key',
+            'status' => '状态',
         ];
     }
-
     /**
      * @inheritdoc
      */
@@ -69,7 +87,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+        return static::findOne(['sAccessToken' => $token]);
     }
 
     /**
@@ -81,41 +99,6 @@ class User extends ActiveRecord implements IdentityInterface
     public static function findByUsername($username)
     {
         return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
-    }
-
-    /**
-     * Finds user by password reset token
-     *
-     * @param string $token password reset token
-     * @return static|null
-     */
-    public static function findByPasswordResetToken($token)
-    {
-        if (!static::isPasswordResetTokenValid($token)) {
-            return null;
-        }
-
-        return static::findOne([
-            'password_reset_token' => $token,
-            'status' => self::STATUS_ACTIVE,
-        ]);
-    }
-
-    /**
-     * Finds out if password reset token is valid
-     *
-     * @param string $token password reset token
-     * @return bool
-     */
-    public static function isPasswordResetTokenValid($token)
-    {
-        if (empty($token)) {
-            return false;
-        }
-
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
-        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
-        return $timestamp + $expire >= time();
     }
 
     /**
@@ -171,7 +154,22 @@ class User extends ActiveRecord implements IdentityInterface
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
-    
+    /**
+     * Generates access token
+     */
+    public function generateAccessToken()
+    {
+        $this->sAccessToken = Yii::$app->security->generateRandomString();
+    }
+
+    /**
+     * Removes access token
+     */
+    public function removeAccessToken()
+    {
+        $this->sAccessToken = null;
+    }
+
     /**
      * Change status
      */
