@@ -1,120 +1,119 @@
-html,
-body {
+/*全局样式*/
+*{
+    margin:0;
+    padding:0;
+    font: 14px/1.7 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+html,body {
     height: 100%;
+    background-color: #f8f8f8;
 }
-
-.wrap {
-    min-height: 100%;
-    height: auto;
-    margin: 0 auto -60px;
-    padding: 0 0 60px;
-}
-
-.wrap > .container {
-    padding: 70px 15px 20px;
-}
-
-.footer {
-    height: 60px;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ddd;
-    padding-top: 20px;
-}
-
-.jumbotron {
+.table-center > thead > tr > th,
+.table-center > tbody > tr > td {
     text-align: center;
-    background-color: transparent;
 }
 
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
+/*登录页*/
+.login-panel {
+    margin-top: 25%;
 }
 
-.not-set {
-    color: #c55;
-    font-style: italic;
-}
-
-/* add sorting icons to gridview sort links */
-a.asc:after, a.desc:after {
+/* 框架 */
+#wrapper {
+    width: 100%;
+    min-height: 100%;
     position: relative;
-    top: 1px;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
-    padding-left: 5px;
+    background-color: #fff;
 }
-
-a.asc:after {
-    content: /*"\e113"*/ "\e151";
+#page-wrapper {
+    position: inherit;
+    padding: 0 60px 20px 200px;
+    width: 100%;
+    z-index: 1;
 }
-
-a.desc:after {
-    content: /*"\e114"*/ "\e152";
+.sidebar {
+    position: fixed;
+    width: 140px;
+    height: 100%;
+    z-index: 10;
+    background-color: #333;
 }
-
-.sort-numerical a.asc:after {
-    content: "\e153";
-}
-
-.sort-numerical a.desc:after {
-    content: "\e154";
-}
-
-.sort-ordinal a.asc:after {
-    content: "\e155";
-}
-
-.sort-ordinal a.desc:after {
-    content: "\e156";
-}
-
-.grid-view td {
-    white-space: nowrap;
-}
-
-.grid-view .filters input,
-.grid-view .filters select {
-    min-width: 50px;
-}
-
-.hint-block {
+.sidebar-logo{
     display: block;
-    margin-top: 5px;
-    color: #999;
+    background-image: -webkit-linear-gradient(135deg, #333, #333);
+    background-image: linear-gradient(135deg, #333, #333);
+    -webkit-animation: hue 60s linear infinite;
+            animation: hue 60s linear infinite;
+    height: 140px;
+    padding: 10px;
 }
+@-webkit-keyframes hue {
+    from {
+        -webkit-filter: hue-rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
 
-.error-summary {
-    color: #a94442;
-    background: #fdf7f7;
-    border-left: 3px solid #eed3d7;
-    padding: 10px 20px;
-    margin: 0 0 15px 0;
-}
-
-/* align the logout "link" (button in form) of the navbar */
-.nav li > form > button.logout {
-    padding: 15px;
-    border: none;
-}
-
-@media(max-width:767px) {
-    .nav li > form > button.logout {
-        display:block;
-        text-align: left;
-        width: 100%;
-        padding: 10px 15px;
+    to {
+        -webkit-filter: hue-rotate(-360deg);
+        filter: hue-rotate(-360deg);
     }
 }
+@keyframes hue {
+    from {
+        -webkit-filter: hue-rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
 
-.nav > li > form > button.logout:focus,
-.nav > li > form > button.logout:hover {
-    text-decoration: none;
+    to {
+        -webkit-filter: hue-rotate(-360deg);
+        filter: hue-rotate(-360deg);
+    }
 }
-
-.nav > li > form > button.logout:focus {
-    outline: none;
+.sidebar-logo img{
+    height: 120px;
+    width: 120px;
+}
+.logo-rotation {
+    display: none;
+    -webkit-animation: rotation linear 30s infinite;
+            animation: rotation linear 30s infinite;
+}
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+@keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+.sidebar li a{
+    color: #bbb;
+}
+.sidebar li a:hover,
+.sidebar li a:focus{
+    color: #bbb;
+    background-color: #333;
+}
+.sidebar li.active a{
+    background-color: #333;
+}
+.sidebar .nav-second-level li a {
+    padding-left: 24px;
+    background-color: #444;
+}
+.sidebar .nav-second-level li.active a{
+    color: #fff;
+    background-color: #4a4a4a;
 }

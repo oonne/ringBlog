@@ -15,14 +15,28 @@
     "minimum-stability": "stable",
     "require": {
         "php": ">=5.4.0",
-        "yiisoft/yii2": "~2.0.6",
-        "yiisoft/yii2-bootstrap": "~2.0.0",
-        "yiisoft/yii2-swiftmailer": "~2.0.0"
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*",
+        "yiisoft/yii2-swiftmailer": "*",
+        "kartik-v/yii2-datecontrol": "dev-master",
+        "kartik-v/yii2-date-range": "dev-master",
+        "kartik-v/yii2-widget-datepicker": "*",
+        "kartik-v/yii2-widget-timepicker": "*",
+        "kartik-v/yii2-widget-datetimepicker": "*",
+        "kartik-v/yii2-widget-fileinput": "*",
+        "kartik-v/yii2-widget-select2": "*",
+        "kartik-v/yii2-field-range": "*",
+        "kartik-v/yii2-sortable": "*",
+        "onokumus/metismenu": "*",
+        "crazydb/yii2-ueditor": "*"
     },
     "require-dev": {
-        "yiisoft/yii2-debug": "~2.0.0",
-        "yiisoft/yii2-gii": "~2.0.0",
-        "yiisoft/yii2-faker": "~2.0.0",
+        "yiisoft/yii2-codeception": "*",
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*",
+        "yiisoft/yii2-faker": "*",
+        "yiisoft/yii2-jui": "*",
+        "yiisoft/yii2-imagine": "*",
 
         "codeception/base": "^2.2.3",
         "codeception/verify": "~0.3.1"

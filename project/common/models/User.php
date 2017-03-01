@@ -23,7 +23,7 @@ use yii\web\IdentityInterface;
  */
 class User extends ActiveRecord implements IdentityInterface
 {
-    const STATUS_DELETED = 0;
+    const STATUS_DISABLED = 0;
     const STATUS_ACTIVE = 10;
 
 
@@ -171,19 +171,40 @@ class User extends ActiveRecord implements IdentityInterface
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
+    
     /**
-     * Generates new password reset token
+     * Change status
      */
-    public function generatePasswordResetToken()
+    public function enable()
     {
-        $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+        $this->status = self::STATUS_ACTIVE;
+    }
+
+    public function disable()
+    {
+        $this->status = self::STATUS_DISABLED;
     }
 
     /**
-     * Removes password reset token
+     * Get status
      */
-    public function removePasswordResetToken()
-    {
-        $this->password_reset_token = null;
-    }
+    // public static function getStatusList()
+    // {
+    //     if (self::$_statusList === null) {
+    //         self::$_statusList = [
+    //             STATUS_ENABLED => '正常',
+    //             STATUS_DISABLED => '禁用'
+    //         ];
+    //     }
+
+    //     return self::$_statusList;
+    // }
+
+    // public function getStatusMsg()
+    // {
+    //     $list = getStatusList();
+
+    //     return $list[$this->AccountStatus] ?? null;
+    // }
+
 }
