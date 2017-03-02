@@ -123,4 +123,38 @@ class UsersuperController extends Controller
         
         return $this->redirect(['index']);
     }
+
+
+    public function actionStatus($id, $status)
+    {
+
+        if (Yii::$app->user->id == $id) {
+            Yii::$app->session->setFlash('danger', '不能修改当前登录用户的状态'); 
+        return $this->redirect(['index']);   
+        } else {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            $model = User::findOne($id);
+
+            if (!$model || !in_array($status, [User::STATUS_ACTIVE, User::STATUS_DISABLED])) {
+                throw new BadRequestHttpException('请求错误！');
+            }
+
+            $model->status = $status;
+
+            if ($model->save(false)) {
+                return [
+                    'status' => 'success',
+                    'data' => []
+                ];
+            } else {
+                return [
+                    'status' => 'fail',
+                    'data' => [
+                        'message' => '更新出错！'
+                    ]
+                ];
+            }
+        }
+    }
 }

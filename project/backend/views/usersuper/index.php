@@ -3,8 +3,8 @@ use yii\grid\GridView;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\Pjax;
-use common\models\RoleModule;
 use backend\widgets\Alert;
+use common\models\User;
 
 $this->title = '用户管理';
 ?>
@@ -51,6 +51,16 @@ $this->title = '用户管理';
                         'filterInputOptions' => ['class' => 'form-control input-sm'],
                     ],
                     [
+                        'attribute' => 'status',
+                        'format' => 'raw',
+                        'filter' => User::getStatusList(),
+                        'filterInputOptions' => ['class' => 'form-control input-sm'],
+                        'headerOptions' => ['class' => 'col-md-2'],
+                        'value' => function ($model, $key, $index, $column) {
+                            return Html::dropDownList('status', $model->status, User::getStatusList(), ['data-id' => $key]);
+                        }
+                    ],
+                    [
                         'class' => 'yii\grid\ActionColumn',
                         'header' => '操作',
                         'headerOptions' => ['class' => 'col-md-2'],
@@ -69,3 +79,27 @@ $this->title = '用户管理';
         <?php Pjax::end() ?>
     </div>
 </div>
+<?php
+$statusUrl = Url::to(['/usersuper/status']);
+$js = <<<JS
+var statusHandle = function () {
+    var id = $(this).attr('data-id');
+    var status = $(this).val();
+    $.ajax({
+        url: '{$statusUrl}',
+        type: 'get',
+        dataType: 'json',
+        data: {id: id, status: status},
+        success: function () {},
+        error: function () {}
+    });
+};
+$('select[name="status"]').change(statusHandle);
+
+$(document).on('pjax:complete', function() {
+    $('select[name="status"]').change(statusHandle);
+})
+JS;
+
+$this->registerJs($js);
+?>

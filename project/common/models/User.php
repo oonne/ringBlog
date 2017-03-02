@@ -191,8 +191,8 @@ class User extends ActiveRecord implements IdentityInterface
     {
         if (self::$_statusList === null) {
             self::$_statusList = [
-                STATUS_ENABLED => '正常',
-                STATUS_DISABLED => '禁用'
+                self::STATUS_ACTIVE => '正常',
+                self::STATUS_DISABLED => '禁用'
             ];
         }
 

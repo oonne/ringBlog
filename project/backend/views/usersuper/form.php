@@ -1,7 +1,6 @@
 <?php
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
-use common\models\RoleModule;
 use backend\widgets\Alert;
 
 $this->title = $model->isNewRecord ? '创建用户' : '更新用户';

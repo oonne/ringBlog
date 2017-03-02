@@ -12,7 +12,7 @@ class UserSearch extends User
     {
         // only fields in rules() are searchable
         return [
-            [['username', 'nickname'], 'safe']
+            [['username', 'nickname', 'status'], 'safe']
         ];
     }
 
@@ -32,7 +32,8 @@ class UserSearch extends User
 
         // adjust the query by adding the filters
         $query->andFilterWhere(['like', 'username', $this->username])
-              ->andFilterWhere(['like', 'nickname', $this->nickname]);
+              ->andFilterWhere(['like', 'nickname', $this->nickname])
+              ->andFilterWhere(['status' => $this->status]);
 
         return $dataProvider;
     }
