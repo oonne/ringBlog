@@ -80,7 +80,6 @@ class m130524_201442_init extends Migration
         $hello->last_editor = 1;
 
         $this->insert('{{%blog}}',$hello->toArray());
-
     }
 
     public function down()

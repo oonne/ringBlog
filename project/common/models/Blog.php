@@ -35,8 +35,14 @@ class Blog extends ActiveRecord
             [['blog_title', 'blog_category', 'blog_content'], 'required', 'on' => ['creation']],
             
             [['blog_title'], 'string', 'max' => 255],
-            [['blog_category'], 'integer'],
             [['blog_content'], 'string'],
+
+            [
+                ['blog_category'],
+                'exist',
+                'targetClass' => Category::className(),
+                'targetAttribute' => 'id'
+            ],
 
             ['status', 'default', 'value' => self::STATUS_ENABLE],
             ['status', 'in', 'range' => [self::STATUS_ENABLE, self::STATUS_DISABLED]],
@@ -67,4 +73,8 @@ class Blog extends ActiveRecord
         return $this->getPrimaryKey();
     }
 
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'blog_category']);
+    }
 }

@@ -4,6 +4,7 @@ namespace common\models;
 
 use Yii;
 use himiklab\sortablegrid\SortableGridBehavior;
+use yii\db\Query;
 
 class Category extends \yii\db\ActiveRecord
 {
@@ -60,6 +61,20 @@ class Category extends \yii\db\ActiveRecord
     public function getId()
     {
         return $this->getPrimaryKey();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public static function getKeyValuePairs()
+    {
+        $query = (new Query())->select(['id', 'category_name'])
+            ->from([self::tableName()])
+            ->orderBy(['category_sequence' => SORT_DESC]);
+
+        list($sql, $params) = Yii::$app->db->getQueryBuilder()->build($query);
+        $data = Yii::$app->db->createCommand($sql)->queryAll(\PDO::FETCH_KEY_PAIR);
+        return $data;
     }
 
     public function afterSave($insert, $changedAttributes)
