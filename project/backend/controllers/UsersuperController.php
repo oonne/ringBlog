@@ -136,7 +136,7 @@ class UsersuperController extends Controller
 
             $model = User::findOne($id);
 
-            if (!$model || !in_array($status, [User::STATUS_ACTIVE, User::STATUS_DISABLED])) {
+            if (!$model || !in_array($status, [User::STATUS_ENABLE, User::STATUS_DISABLED])) {
                 throw new BadRequestHttpException('请求错误！');
             }
 

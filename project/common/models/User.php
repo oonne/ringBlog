@@ -5,23 +5,10 @@ use Yii;
 use yii\web\IdentityInterface;
 use yii\base\NotSupportedException;
 
-/**
- * User model
- *
- * @property integer $id
- * @property string $username
- * @property string $nickname
- * @property string $password_hash
- * @property string $auth_key
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
- * @property string $password write-only password
- */
 class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DISABLED = 0;
-    const STATUS_ACTIVE = 10;
+    const STATUS_ENABLE = 10;
 
     private static $_statusList;
     public $password;
@@ -37,6 +24,16 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * @inheritdoc
      */
+    public function behaviors()
+    {
+        return [
+            parent::timestampBehavior()
+        ];
+    }
+    
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
@@ -48,8 +45,8 @@ class User extends ActiveRecord implements IdentityInterface
             [['nickname'], 'required'],
             [['nickname'], 'string', 'max' => 255],
 
-            ['status', 'default', 'value' => self::STATUS_ACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DISABLED]],
+            ['status', 'default', 'value' => self::STATUS_ENABLE],
+            ['status', 'in', 'range' => [self::STATUS_ENABLE, self::STATUS_DISABLED]],
 
             [['password'], 'required', 'on' => ['creation']],
             [['password'], 'trim'],
@@ -80,7 +77,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ENABLE]);
     }
 
     /**
@@ -99,7 +96,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ENABLE]);
     }
 
     /**
@@ -176,7 +173,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function enable()
     {
-        $this->status = self::STATUS_ACTIVE;
+        $this->status = self::STATUS_ENABLE;
     }
 
     public function disable()
@@ -191,7 +188,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         if (self::$_statusList === null) {
             self::$_statusList = [
-                self::STATUS_ACTIVE => '正常',
+                self::STATUS_ENABLE => '正常',
                 self::STATUS_DISABLED => '禁用'
             ];
         }

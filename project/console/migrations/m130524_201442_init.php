@@ -2,8 +2,8 @@
 
 use yii\db\Migration;
 use common\models\User;
-// use common\models\Category;
-// use common\models\Blog;
+use common\models\Category;
+use common\models\Blog;
 
 class m130524_201442_init extends Migration
 {
@@ -41,43 +41,43 @@ class m130524_201442_init extends Migration
         // Crear category table
         $this->createTable('{{%category}}', [
             'id' => $this->primaryKey(),
-            'category_name' => $this->string()->notNull(),
+            'category_name' => $this->string(32)->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
-            'last_account' => $this->integer()->notNull(),
+            'last_editor' => $this->integer()->notNull(),
         ], $tableOptions);
 
         // Initialize the category Default
-        // $defaultCategory = new Category();
-        // $defaultCategory->category_name = '默认分类';
-        // $defaultCategory->created_at = $defaultCategory->updated_at = time();
-        // $defaultCategory->last_account = 1;
+        $defaultCategory = new Category();
+        $defaultCategory->category_name = '默认分类';
+        $defaultCategory->created_at = $defaultCategory->updated_at = time();
+        $defaultCategory->last_editor = 1;
 
-        // $this->insert('{{%category}}',$defaultCategory->toArray());
+        $this->insert('{{%category}}',$defaultCategory->toArray());
 
         // Crear blog table
         $this->createTable('{{%blog}}', [
             'id' => $this->primaryKey(),
             'blog_title' => $this->string(255)->notNull(),
-            'category_id' => $this->integer()->notNull(),
+            'blog_category' => $this->integer()->notNull(),
             'blog_content' => $this->text()->notNull(),
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'pageviews' => $this->integer()->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
-            'last_account' => $this->integer()->notNull(),
+            'last_editor' => $this->integer()->notNull(),
         ], $tableOptions);
 
         // Initialize the blog "Hello world"
-        // $hello = new Blog();
-        // $hello->blog_title = 'Hello world';
-        // $hello->category_id = 1;
-        // $hello->blog_content = 'Hello world! Welcome to RingBlog!';
-        // $hello->pageviews = 0;
-        // $hello->created_at = $hello->updated_at = time();
-        // $hello->last_account = 1;
+        $hello = new Blog();
+        $hello->blog_title = 'Hello world';
+        $hello->blog_category = 1;
+        $hello->blog_content = 'Hello world! Welcome to RingBlog!';
+        $hello->pageviews = 0;
+        $hello->created_at = $hello->updated_at = time();
+        $hello->last_editor = 1;
 
-        // $this->insert('{{%blog}}',$hello->toArray());
+        $this->insert('{{%blog}}',$hello->toArray());
 
     }
 

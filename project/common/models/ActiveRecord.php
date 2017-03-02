@@ -18,7 +18,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
         return [
             'class' => TimestampBehavior::className(),
             'createdAtAttribute' => 'created_at',
-            'updatedAtAttribute' => false,
+            'updatedAtAttribute' => 'updated_at',
             'value' => function () {
                 return new Expression('NOW()');
             }
