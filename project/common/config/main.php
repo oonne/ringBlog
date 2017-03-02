@@ -1,6 +1,6 @@
 <?php
 return [
-    'name' => 'ringBlog',
+    'name' => 'RingBlog',
     'timeZone' => 'Asia/Hong_Kong',
     'language' => 'zh-CN',
     'sourceLanguage' => 'zh-CN',

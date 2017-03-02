@@ -23,6 +23,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DISABLED = 0;
     const STATUS_ACTIVE = 10;
 
+    private static $_statusList;
     public $password;
 
     /**
@@ -159,7 +160,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function generateAccessToken()
     {
-        $this->sAccessToken = Yii::$app->security->generateRandomString();
+        $this->access_token = Yii::$app->security->generateRandomString();
     }
 
     /**
@@ -186,23 +187,23 @@ class User extends ActiveRecord implements IdentityInterface
     /**
      * Get status
      */
-    // public static function getStatusList()
-    // {
-    //     if (self::$_statusList === null) {
-    //         self::$_statusList = [
-    //             STATUS_ENABLED => '正常',
-    //             STATUS_DISABLED => '禁用'
-    //         ];
-    //     }
+    public static function getStatusList()
+    {
+        if (self::$_statusList === null) {
+            self::$_statusList = [
+                STATUS_ENABLED => '正常',
+                STATUS_DISABLED => '禁用'
+            ];
+        }
 
-    //     return self::$_statusList;
-    // }
+        return self::$_statusList;
+    }
 
-    // public function getStatusMsg()
-    // {
-    //     $list = getStatusList();
+    public function getStatusMsg()
+    {
+        $list = getStatusList();
 
-    //     return $list[$this->AccountStatus] ?? null;
-    // }
+        return $list[$this->status] ?? null;
+    }
 
 }

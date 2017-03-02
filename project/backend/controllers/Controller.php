@@ -12,11 +12,6 @@ class Controller extends \yii\web\Controller
 {
     public function beforeAction($action)
     {         
-
-        if ($this->id !== 'site' && !Yii::$app->user->isGuest) {
-            throw new ForbiddenHttpException('您没有权限访问该模块！');
-        }
-
         if (!parent::beforeAction($action)) {
             return false;
         }
