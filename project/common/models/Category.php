@@ -2,7 +2,10 @@
 
 namespace common\models;
 
-class Category extends ActiveRecord
+use Yii;
+use himiklab\sortablegrid\SortableGridBehavior;
+
+class Category extends \yii\db\ActiveRecord
 {
     /**
      * @inheritdoc
@@ -18,7 +21,10 @@ class Category extends ActiveRecord
     public function behaviors()
     {
         return [
-            parent::timestampBehavior()
+            [
+                'class' => SortableGridBehavior::className(),
+                'sortableAttribute' => 'category_sequence'
+            ]
         ];
     }
 
@@ -41,6 +47,7 @@ class Category extends ActiveRecord
         return [
             'id' => 'User ID',
             'category_name' => '分类名',
+            'category_sequence' => '分类排序',
             'created_at' => '创建时间',
             'updated_at' => '修改时间',
             'last_editor' => '最后修改人ID',
@@ -55,4 +62,8 @@ class Category extends ActiveRecord
         return $this->getPrimaryKey();
     }
 
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+    }
 }

@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use backend\widgets\Alert;
 
-$this->title = $model->isNewRecord ? '创建用户' : '修改用户';
+$this->title = $model->isNewRecord ? '创建分类' : '修改分类';
 ?>
 <div class="row">
     <div class="col-lg-12">
@@ -21,9 +21,7 @@ $this->title = $model->isNewRecord ? '创建用户' : '修改用户';
 <div class="row">
     <div class="col-lg-6">
     <?php $form = ActiveForm::begin(); ?>
-        <?= $form->field($model, 'username') ?>
-        <?= $form->field($model, 'nickname') ?>
-        <?= $form->field($model, 'password')->passwordInput() ?>
+        <?= $form->field($model, 'category_name') ?>
         <div class="form-group">
             <?= Html::submitButton('保存', ['class' => 'btn btn-success']) ?>
         </div>

@@ -124,7 +124,6 @@ class UsersuperController extends Controller
         return $this->redirect(['index']);
     }
 
-
     public function actionStatus($id, $status)
     {
 

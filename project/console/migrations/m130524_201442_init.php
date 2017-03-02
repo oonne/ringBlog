@@ -42,6 +42,7 @@ class m130524_201442_init extends Migration
         $this->createTable('{{%category}}', [
             'id' => $this->primaryKey(),
             'category_name' => $this->string(32)->notNull(),
+            'category_sequence' => $this->integer()->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
             'last_editor' => $this->integer()->notNull(),
@@ -50,6 +51,7 @@ class m130524_201442_init extends Migration
         // Initialize the category Default
         $defaultCategory = new Category();
         $defaultCategory->category_name = '默认分类';
+        $defaultCategory->category_sequence = 1;
         $defaultCategory->created_at = $defaultCategory->updated_at = time();
         $defaultCategory->last_editor = 1;
 
