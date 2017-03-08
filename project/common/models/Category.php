@@ -6,7 +6,7 @@ use Yii;
 use himiklab\sortablegrid\SortableGridBehavior;
 use yii\db\Query;
 
-class Category extends \yii\db\ActiveRecord
+class Category extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -22,6 +22,7 @@ class Category extends \yii\db\ActiveRecord
     public function behaviors()
     {
         return [
+            parent::timestampBehavior(),
             [
                 'class' => SortableGridBehavior::className(),
                 'sortableAttribute' => 'category_sequence'
@@ -86,13 +87,5 @@ class Category extends \yii\db\ActiveRecord
         list($sql, $params) = Yii::$app->db->getQueryBuilder()->build($query);
         $data = Yii::$app->db->createCommand($sql)->queryAll();
         return $data;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function afterSave($insert, $changedAttributes)
-    {
-        parent::afterSave($insert, $changedAttributes);
     }
 }
