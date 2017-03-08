@@ -50,14 +50,14 @@ $this->title = '博客管理';
                         'filterInputOptions' => ['class' => 'form-control input-sm'],
                         'value' => function ($model, $key, $index, $column) {
                             $preview = strip_tags($model->blog_content);
-                            if(strlen($preview)>200){
+                            if (strlen($preview)>200) {
                                 $preview = mb_substr($preview, 0, 100).'...';    
                             }
                             return $preview;
                         }
                     ],
                     [
-                        'attribute' => 'blog_content',
+                        'attribute' => 'blog_category',
                         'headerOptions' => ['class' => 'col-md-1'],
                         'filter' => Category::getKeyValuePairs(),
                         'filterInputOptions' => ['class' => 'form-control input-sm'],

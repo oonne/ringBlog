@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-backend',
+    'id' => 'RingBlog-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],

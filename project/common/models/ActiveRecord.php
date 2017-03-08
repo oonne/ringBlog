@@ -20,7 +20,7 @@ class ActiveRecord extends \yii\db\ActiveRecord
             'createdAtAttribute' => 'created_at',
             'updatedAtAttribute' => 'updated_at',
             'value' => function () {
-                return new Expression('NOW()');
+                return time();
             }
         ];
     }

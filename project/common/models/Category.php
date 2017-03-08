@@ -77,6 +77,20 @@ class Category extends \yii\db\ActiveRecord
         return $data;
     }
 
+    public static function getCategoryList()
+    {
+        $query = (new Query())->select(['id', 'category_name'])
+            ->from([self::tableName()])
+            ->orderBy(['category_sequence' => SORT_DESC]);
+
+        list($sql, $params) = Yii::$app->db->getQueryBuilder()->build($query);
+        $data = Yii::$app->db->createCommand($sql)->queryAll();
+        return $data;
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function afterSave($insert, $changedAttributes)
     {
         parent::afterSave($insert, $changedAttributes);
