@@ -10,6 +10,10 @@ $this->title = Yii::$app->params['blogName'];
         <?php Pjax::begin() ?>
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
+            'summaryOptions' => ['class' => 'hidden'],
+            'pager' => [
+            	'options' => ['class' => 'pagination ring-pager-center']
+        	],
             'itemView' => '_blog',
         ]) ?>
         <?php Pjax::end() ?>
