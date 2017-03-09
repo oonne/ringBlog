@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use Yii;
 use yii\web\Controller;
 use yii\data\ActiveDataProvider;
+use yii\web\BadRequestHttpException;
 use common\models\Blog;
 
 /**
@@ -64,7 +65,7 @@ class SiteController extends Controller
         $model = Blog::findOne($id);
 
         if (!$model) {
-            Yii::$app->session->setFlash('danger', '找不到这篇博客！');
+            throw new BadRequestHttpException('请求错误！');
         }
 
         return $this->render('blog', [
