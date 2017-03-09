@@ -36,9 +36,12 @@ AppAsset::register($this);
     ]);
 
     $menuItems = [];
+    // array_push($menuItems, ['label' => '全部', 'url' => ['/site/index']]);
     $categories = Category::getCategoryList();
     foreach($categories as $category){
-        array_push($menuItems, ['label' => $category['category_name'], 'url' => ['/category/'.$category['id']]]);
+        $category_name = $category['category_name'];
+        $category_id = $category['id'];
+        array_push($menuItems, ['label' => $category_name, 'url' => ['/site/category', 'id' => $category_id] ]);
     };
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],

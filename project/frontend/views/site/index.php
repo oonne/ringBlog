@@ -1,7 +1,6 @@
 <?php
 use yii\widgets\ListView;
 use yii\widgets\Pjax;
-/* @var $this yii\web\View */
 
 $this->title = Yii::$app->params['blogName'];
 ?>
@@ -14,7 +13,7 @@ $this->title = Yii::$app->params['blogName'];
             'pager' => [
             	'options' => ['class' => 'pagination ring-pager-center']
         	],
-            'itemView' => '_blog',
+            'itemView' => '_catelog',
         ]) ?>
         <?php Pjax::end() ?>
     </div>

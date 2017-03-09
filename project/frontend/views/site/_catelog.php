@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\helpers\HtmlPurifier;
 use common\models\Category;
 ?>
-<div class="ring-catelog-blog">
+<a class="ring-catelog-blog" href="/site/blog?id=<?= $model->id ?>">
     <h1>
     	<?= Html::encode($model->blog_title) ?>
     </h1>
@@ -20,4 +20,4 @@ use common\models\Category;
 		echo $preview;
 		?>    
 	</p>
-</div>
+</a>

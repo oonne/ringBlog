@@ -51,7 +51,13 @@ body {
 
 /* Catelog */
 .ring-catelog-blog {
+    display: block;
     margin-bottom: 60px;
+    color: #4f4f4f;
+}
+.ring-catelog-blog:hover {
+    text-decoration: none;
+    color: #333;
 }
 .ring-catelog-category {
     font-size: 0.9rem;
