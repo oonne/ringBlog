@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\web\BadRequestHttpException;
 use common\models\Category;
 use backend\models\CategorySearch;
+use common\models\Blog;
 use himiklab\sortablegrid\SortableGridAction;
 
 /**
@@ -109,18 +110,23 @@ class CategorysuperController extends Controller
             throw new BadRequestHttpException('请求错误！');
         }
 
-        $transaction = Yii::$app->db->beginTransaction();
-        try {
-            if (!$model->delete()) {
-                throw new \Exception('删除失败！');
-            }
+        $hasBlog = Blog::findOne(['blog_category' => $id]);
+        if($hasBlog){
+            Yii::$app->session->setFlash('danger', '该分类下有内容，不能删除！');
+        }else{
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                if (!$model->delete()) {
+                    throw new \Exception('删除失败！');
+                }
 
-            $transaction->commit();
-            Yii::$app->session->setFlash('success', '删除成功！');
-            return $this->redirect(['index']);
-        } catch (\Exception $e) {
-            $transaction->rollBack();
-            Yii::$app->session->setFlash('danger', $e->getMessage());
+                $transaction->commit();
+                Yii::$app->session->setFlash('success', '删除成功！');
+                return $this->redirect(['index']);
+            } catch (\Exception $e) {
+                $transaction->rollBack();
+                Yii::$app->session->setFlash('danger', $e->getMessage());
+            }
         }
         
         return $this->redirect(['index']);
