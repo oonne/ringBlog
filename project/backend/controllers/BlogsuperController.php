@@ -49,8 +49,8 @@ class BlogsuperController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
+                $model->last_editor = Yii::$app->user->id;
                 if ($model->save(false)) {
-                    $model->last_editor = Yii::$app->user->id;
                     Yii::$app->session->setFlash('success', '添加成功！');
                     return $this->redirect(['index']);
                 } else {
@@ -74,8 +74,8 @@ class BlogsuperController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
+                $model->last_editor = Yii::$app->user->id;
                 if ($model->save(false)) {
-                    $model->last_editor = Yii::$app->user->id;
                     Yii::$app->session->setFlash('success', '更新成功！');
                     return $this->redirect(['index']);
                 } else {
@@ -125,5 +125,32 @@ class BlogsuperController extends Controller
         }
         
         return $this->redirect(['index']);
+    }
+
+    public function actionStatus($id, $status)
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        
+        $model = Blog::findOne($id);
+
+        if (!$model || !in_array($status, [Blog::STATUS_ENABLED, Blog::STATUS_DISABLED])) {
+            throw new BadRequestHttpException('请求错误！');
+        }
+
+        $model->status = $status;
+
+        if ($model->save(false)) {
+            return [
+                'status' => 'success',
+                'data' => []
+            ];
+        } else {
+            return [
+                'status' => 'fail',
+                'data' => [
+                    'message' => '更新出错！'
+                ]
+            ];
+        }
     }
 }

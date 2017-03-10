@@ -60,8 +60,8 @@ class CategorysuperController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
+                $model->last_editor = Yii::$app->user->id;
                 if ($model->save(false)) {
-                    $model->last_editor = Yii::$app->user->id;
                     $model->category_sequence = $model->id;
                     Yii::$app->session->setFlash('success', '添加成功！');
                     return $this->redirect(['index']);
@@ -86,8 +86,8 @@ class CategorysuperController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
+                $model->last_editor = Yii::$app->user->id;
                 if ($model->save(false)) {
-                    $model->last_editor = Yii::$app->user->id;
                     Yii::$app->session->setFlash('success', '更新成功！');
                     return $this->redirect(['index']);
                 } else {

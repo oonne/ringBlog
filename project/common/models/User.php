@@ -8,7 +8,7 @@ use yii\base\NotSupportedException;
 class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DISABLED = 0;
-    const STATUS_ENABLE = 10;
+    const STATUS_ENABLED = 10;
 
     private static $_statusList;
     public $password;
@@ -45,8 +45,8 @@ class User extends ActiveRecord implements IdentityInterface
             [['nickname'], 'required'],
             [['nickname'], 'string', 'max' => 255],
 
-            ['status', 'default', 'value' => self::STATUS_ENABLE],
-            ['status', 'in', 'range' => [self::STATUS_ENABLE, self::STATUS_DISABLED]],
+            ['status', 'default', 'value' => self::STATUS_ENABLED],
+            ['status', 'in', 'range' => [self::STATUS_ENABLED, self::STATUS_DISABLED]],
 
             [['password'], 'required', 'on' => ['creation']],
             [['password'], 'trim'],
@@ -77,7 +77,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::STATUS_ENABLE]);
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ENABLED]);
     }
 
     /**
@@ -96,7 +96,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ENABLE]);
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ENABLED]);
     }
 
     /**
@@ -173,7 +173,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function enable()
     {
-        $this->status = self::STATUS_ENABLE;
+        $this->status = self::STATUS_ENABLED;
     }
 
     public function disable()
@@ -188,7 +188,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         if (self::$_statusList === null) {
             self::$_statusList = [
-                self::STATUS_ENABLE => '正常',
+                self::STATUS_ENABLED => '正常',
                 self::STATUS_DISABLED => '禁用'
             ];
         }

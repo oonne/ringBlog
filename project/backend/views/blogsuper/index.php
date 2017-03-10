@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use kartik\datetime\DateTimePicker;
 use backend\widgets\Alert;
 use common\models\Category;
+use common\models\Blog;
 
 $this->title = '博客管理';
 ?>
@@ -41,7 +42,7 @@ $this->title = '博客管理';
                     ],
                     [
                         'attribute' => 'blog_title',
-                        'headerOptions' => ['class' => 'col-md-2'],
+                        'headerOptions' => ['class' => 'col-md-1'],
                         'filterInputOptions' => ['class' => 'form-control input-sm'],
                     ],
                     [
@@ -57,12 +58,27 @@ $this->title = '博客管理';
                         }
                     ],
                     [
+                        'attribute' => 'pageviews',
+                        'headerOptions' => ['class' => 'col-md-1'],
+                        'filterInputOptions' => ['class' => 'form-control input-sm'],
+                    ],
+                    [
                         'attribute' => 'blog_category',
                         'headerOptions' => ['class' => 'col-md-1'],
                         'filter' => Category::getKeyValuePairs(),
                         'filterInputOptions' => ['class' => 'form-control input-sm'],
                         'value' => function ($model, $key, $index, $column) {
                             return $model->category->category_name;
+                        }
+                    ],
+                    [
+                        'attribute' => 'status',
+                        'format' => 'raw',
+                        'filter' => Blog::getStatusList(),
+                        'filterInputOptions' => ['class' => 'form-control input-sm'],
+                        'headerOptions' => ['class' => 'col-md-1'],
+                        'value' => function ($model, $key, $index, $column) {
+                            return Html::dropDownList('status', $model->status, Blog::getStatusList(), ['data-id' => $key]);
                         }
                     ],
                     [
@@ -123,3 +139,27 @@ $this->title = '博客管理';
         <?php Pjax::end() ?>
     </div>
 </div>
+<?php
+$statusUrl = Url::to(['/blogsuper/status']);
+$js = <<<JS
+var statusHandle = function () {
+    var id = $(this).attr('data-id');
+    var status = $(this).val();
+    $.ajax({
+        url: '{$statusUrl}',
+        type: 'get',
+        dataType: 'json',
+        data: {id: id, status: status},
+        success: function () {},
+        error: function () {}
+    });
+};
+$('select[name="status"]').change(statusHandle);
+
+$(document).on('pjax:complete', function() {
+    $('select[name="status"]').change(statusHandle);
+})
+JS;
+
+$this->registerJs($js);
+?>

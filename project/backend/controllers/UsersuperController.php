@@ -129,13 +129,13 @@ class UsersuperController extends Controller
 
         if (Yii::$app->user->id == $id) {
             Yii::$app->session->setFlash('danger', '不能修改当前登录用户的状态'); 
-        return $this->redirect(['index']);   
+            return $this->redirect(['index']);   
         } else {
             Yii::$app->response->format = Response::FORMAT_JSON;
 
             $model = User::findOne($id);
 
-            if (!$model || !in_array($status, [User::STATUS_ENABLE, User::STATUS_DISABLED])) {
+            if (!$model || !in_array($status, [User::STATUS_ENABLED, User::STATUS_DISABLED])) {
                 throw new BadRequestHttpException('请求错误！');
             }
 

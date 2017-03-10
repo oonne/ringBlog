@@ -20,7 +20,9 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {    
-        $query = Blog::find();
+        $query = Blog::find()->where([
+            'status' => Blog::STATUS_ENABLED
+        ]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -41,7 +43,11 @@ class SiteController extends Controller
 
     public function actionCategory($id)
     {    
-        $query = Blog::find()->andFilterWhere(['blog_category' => $id]);
+        $query = Blog::find()->where([
+            'status' => Blog::STATUS_ENABLED
+        ])->andFilterWhere([
+            'blog_category' => $id
+        ]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -62,11 +68,14 @@ class SiteController extends Controller
 
     public function actionBlog($id)
     {    
-        $model = Blog::findOne($id);
-
+        $model = Blog::findOne(['id' => $id, 'status' => Blog::STATUS_ENABLED]);
+        
         if (!$model) {
             throw new BadRequestHttpException('请求错误！');
         }
+
+        $model->pageviews = $model->pageviews + 1;
+        $model->save(false);
 
         return $this->render('blog', [
             'blog' => $model
