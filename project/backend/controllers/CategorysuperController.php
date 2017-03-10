@@ -110,10 +110,10 @@ class CategorysuperController extends Controller
             throw new BadRequestHttpException('请求错误！');
         }
 
-        $hasBlog = Blog::findOne(['blog_category' => $id]);
-        if($hasBlog){
+        $blog = Blog::find()->where(['blog_category' => $id])->count();
+        if ( $blog ) {
             Yii::$app->session->setFlash('danger', '该分类下有内容，不能删除！');
-        }else{
+        } else {
             $transaction = Yii::$app->db->beginTransaction();
             try {
                 if (!$model->delete()) {
