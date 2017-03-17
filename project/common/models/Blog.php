@@ -62,9 +62,16 @@ class Blog extends ActiveRecord
             'status' => '状态',
             'pageviews' => '点击量',
             'created_at' => '创建时间',
-            'updated_at' => '修改时间',
+            'updated_at' => '更新时间',
             'last_editor' => '最后修改人ID',
+            'createdTimeRange' => '创建时间',
+            'updatedTimeRange' => '更新时间',
         ];
+    }
+
+    public function addPageviews()
+    {
+        $this->pageviews += 1;
     }
 
     public function getId()

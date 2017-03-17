@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 use yii\helpers\Url;
-use kartik\datetime\DateTimePicker;
+use kartik\daterange\DateRangePicker;
 use backend\widgets\Alert;
 use common\models\Category;
 use common\models\Blog;
@@ -82,17 +82,22 @@ $this->title = '博客管理';
                         }
                     ],
                     [
-                        'attribute' => 'created_at',
-                        'filter' => '<div class="input-group">' . DateTimePicker::widget([
+                        'attribute' => 'createdTimeRange',
+                        'filter' => '<div class="drp-container">' . DateRangePicker::widget([
                             'model' => $searchModel,
-                            'attribute' => 'createdTimeFrom',
-                            'type' => DateTimePicker::TYPE_INPUT,
-                            'options' => ['class' => 'form-control input-sm']
-                        ]) . '<div class="input-group-addon">to</div>' . DateTimePicker::widget([
-                            'model' => $searchModel,
-                            'attribute' => 'createdTimeTo',
-                            'type' => DateTimePicker::TYPE_INPUT,
-                            'options' => ['class' => 'form-control input-sm']
+                            'attribute' => 'createdTimeRange',
+                            'presetDropdown' => true,
+                            'hideInput' => true,
+                            'containerOptions' => ['class' => 'drp-container input-group date-range-container'],
+                            'convertFormat' => true,
+                            'initRangeExpr' => true,
+                            'pluginOptions' => [
+                                'locale' => [
+                                    'format' => 'Y-m-d',
+                                    'separator' => '~',
+                                ],
+                                'opens' => 'left'
+                            ],
                         ]) . '</div>',
                         'headerOptions' => ['class' => 'col-md-2'],
                         'value' => function ($model, $key, $index, $column) {
@@ -100,21 +105,26 @@ $this->title = '博客管理';
                         }
                     ],
                     [
-                        'attribute' => 'updated_at',
-                        'filter' => '<div class="input-group">' . DateTimePicker::widget([
+                        'attribute' => 'updatedTimeRange',
+                        'filter' => '<div class="drp-container">' . DateRangePicker::widget([
                             'model' => $searchModel,
-                            'attribute' => 'updatedTimeFrom',
-                            'type' => DateTimePicker::TYPE_INPUT,
-                            'options' => ['class' => 'form-control input-sm']
-                        ]) . '<div class="input-group-addon">to</div>' . DateTimePicker::widget([
-                            'model' => $searchModel,
-                            'attribute' => 'updatedTimeTo',
-                            'type' => DateTimePicker::TYPE_INPUT,
-                            'options' => ['class' => 'form-control input-sm']
+                            'attribute' => 'updatedTimeRange',
+                            'presetDropdown' => true,
+                            'hideInput' => true,
+                            'containerOptions' => ['class' => 'drp-container input-group date-range-container'],
+                            'convertFormat' => true,
+                            'initRangeExpr' => true,
+                            'pluginOptions' => [
+                                'locale' => [
+                                    'format' => 'Y-m-d',
+                                    'separator' => '~',
+                                ],
+                                'opens' => 'left'
+                            ],
                         ]) . '</div>',
                         'headerOptions' => ['class' => 'col-md-2'],
                         'value' => function ($model, $key, $index, $column) {
-                            return date('Y-m-d H:i:s', $model->created_at); 
+                            return date('Y-m-d H:i:s', $model->updated_at); 
                         }
                     ],
                     [

@@ -74,7 +74,7 @@ class SiteController extends Controller
             throw new BadRequestHttpException('请求错误！');
         }
 
-        $model->pageviews = $model->pageviews + 1;
+        $model->addPageviews();
         $model->save(false);
 
         return $this->render('blog', [

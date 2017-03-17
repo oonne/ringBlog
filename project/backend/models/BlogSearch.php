@@ -8,16 +8,18 @@ use common\models\Blog;
 
 class BlogSearch extends Blog
 {
-    public $createdTimeFrom;
-    public $createdTimeTo;
-    public $updatedTimeFrom;
-    public $updatedTimeTo;
+    public $createdTimeRange;
+    public $_createdFrom;
+    public $_createdTo;
+    public $updatedTimeRange;
+    public $_updatedFrom;
+    public $_updatedTo;
 
     public function rules()
     {
         // only fields in rules() are searchable
         return [
-            [['blog_title','blog_content', 'pageviews', 'blog_category', 'status', 'updatedTimeFrom', 'updatedTimeTo', 'createdTimeFrom', 'createdTimeTo'], 'safe']
+            [['blog_title','blog_content', 'pageviews', 'blog_category', 'status', 'createdTimeRange', 'updatedTimeRange'], 'safe']
         ];
     }
 
@@ -37,15 +39,26 @@ class BlogSearch extends Blog
 
         QueryHelper::addDigitalFilter($query, 'pageviews', $this->pageviews);
 
+        $createdTime = explode('~', $this->createdTimeRange, 2);
+        if (count($createdTime) == 2){
+            $this->_createdFrom = strtotime($createdTime[0]);
+            $this->_createdTo = strtotime($createdTime[1]);
+            $query->andFilterWhere(['>=', 'created_at', $this->_createdFrom ])
+                  ->andFilterWhere(['<', 'created_at', $this->_createdTo ]);
+        }
+        $updatedTime = explode('~', $this->updatedTimeRange, 2);
+        if (count($updatedTime) == 2){
+            $this->_updatedFrom = strtotime($updatedTime[0]);
+            $this->_updatedTo = strtotime($updatedTime[1]);
+            $query->andFilterWhere(['>=', 'updated_at', $this->_updatedFrom ])
+                  ->andFilterWhere(['<', 'updated_at', $this->_updatedTo ]);
+        }
+
         // adjust the query by adding the filters
         $query->andFilterWhere(['like', 'blog_title', $this->blog_title])
               ->andFilterWhere(['like', 'blog_content', $this->blog_content])
               ->andFilterWhere(['status' => $this->status])
-              ->andFilterWhere(['blog_category' => $this->blog_category])
-              ->andFilterWhere(['>=', 'created_at', $this->createdTimeFrom])
-              ->andFilterWhere(['<', 'created_at', $this->createdTimeTo])
-              ->andFilterWhere(['>=', 'updated_at', $this->updatedTimeFrom])
-              ->andFilterWhere(['<', 'updated_at', $this->updatedTimeTo]);
+              ->andFilterWhere(['blog_category' => $this->blog_category]);
 
         return $dataProvider;
     }

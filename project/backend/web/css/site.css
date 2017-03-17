@@ -12,6 +12,9 @@ html,body {
 .table-center > tbody > tr > td {
     text-align: center;
 }
+.date-range-container{
+    overflow: hidden;
+}
 
 /*登录页*/
 .login-panel {
