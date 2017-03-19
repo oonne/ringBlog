@@ -82,15 +82,14 @@ $this->title = '博客管理';
                         }
                     ],
                     [
-                        'attribute' => 'createdTimeRange',
+                        'attribute' => 'dateRange',
                         'filter' => '<div class="drp-container">' . DateRangePicker::widget([
                             'model' => $searchModel,
-                            'attribute' => 'createdTimeRange',
+                            'attribute' => 'dateRange',
                             'presetDropdown' => true,
                             'hideInput' => true,
                             'containerOptions' => ['class' => 'drp-container input-group date-range-container'],
                             'convertFormat' => true,
-                            'initRangeExpr' => true,
                             'pluginOptions' => [
                                 'locale' => [
                                     'format' => 'Y-m-d',
@@ -101,7 +100,7 @@ $this->title = '博客管理';
                         ]) . '</div>',
                         'headerOptions' => ['class' => 'col-md-2'],
                         'value' => function ($model, $key, $index, $column) {
-                            return date('Y-m-d H:i:s', $model->created_at); 
+                            return $model->blog_date; 
                         }
                     ],
                     [
@@ -113,13 +112,12 @@ $this->title = '博客管理';
                             'hideInput' => true,
                             'containerOptions' => ['class' => 'drp-container input-group date-range-container'],
                             'convertFormat' => true,
-                            'initRangeExpr' => true,
                             'pluginOptions' => [
                                 'locale' => [
                                     'format' => 'Y-m-d',
                                     'separator' => '~',
                                 ],
-                                'opens' => 'left'
+                                'opens' => 'left',
                             ],
                         ]) . '</div>',
                         'headerOptions' => ['class' => 'col-md-2'],

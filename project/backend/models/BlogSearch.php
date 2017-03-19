@@ -8,9 +8,9 @@ use common\models\Blog;
 
 class BlogSearch extends Blog
 {
-    public $createdTimeRange;
-    public $_createdFrom;
-    public $_createdTo;
+    public $dateRange;
+    public $_dateFrom;
+    public $_dateTo;
     public $updatedTimeRange;
     public $_updatedFrom;
     public $_updatedTo;
@@ -19,7 +19,7 @@ class BlogSearch extends Blog
     {
         // only fields in rules() are searchable
         return [
-            [['blog_title','blog_content', 'pageviews', 'blog_category', 'status', 'createdTimeRange', 'updatedTimeRange'], 'safe']
+            [['blog_title','blog_content', 'pageviews', 'blog_category', 'status', 'dateRange', 'updatedTimeRange'], 'safe']
         ];
     }
 
@@ -29,7 +29,7 @@ class BlogSearch extends Blog
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'sort' => ['defaultOrder' => ['created_at' => SORT_DESC]]
+            'sort' => ['defaultOrder' => ['blog_date' => SORT_DESC]]
         ]);
 
         // load the seach form data and validate
@@ -39,17 +39,17 @@ class BlogSearch extends Blog
 
         QueryHelper::addDigitalFilter($query, 'pageviews', $this->pageviews);
 
-        $createdTime = explode('~', $this->createdTimeRange, 2);
-        if (count($createdTime) == 2){
-            $this->_createdFrom = strtotime($createdTime[0]);
-            $this->_createdTo = strtotime($createdTime[1]);
-            $query->andFilterWhere(['>=', 'created_at', $this->_createdFrom ])
-                  ->andFilterWhere(['<', 'created_at', $this->_createdTo ]);
+        $date = explode('~', $this->dateRange, 2);
+        if (count($date) == 2){
+            $this->_dateFrom = $date[0];
+            $this->_dateTo = $date[1];
+            $query->andFilterWhere(['>=', 'blog_date', $this->_dateFrom ])
+                  ->andFilterWhere(['<=', 'blog_date', $this->_dateTo ]);
         }
         $updatedTime = explode('~', $this->updatedTimeRange, 2);
         if (count($updatedTime) == 2){
             $this->_updatedFrom = strtotime($updatedTime[0]);
-            $this->_updatedTo = strtotime($updatedTime[1]);
+            $this->_updatedTo = strtotime($updatedTime[1])+86400;
             $query->andFilterWhere(['>=', 'updated_at', $this->_updatedFrom ])
                   ->andFilterWhere(['<', 'updated_at', $this->_updatedTo ]);
         }

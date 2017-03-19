@@ -9,7 +9,7 @@ use common\models\Category;
     </h1>
     <p>
     	<span class="ring-catelog-category"><?= Html::encode($model->category->category_name) ?></span>
-    	<span class="ring-catelog-time"><?= Html::encode(date("Y-m-d", $model->created_at)) ?></span>
+    	<span class="ring-catelog-time"><?= Html::encode($model->blog_date) ?></span>
     </p>
     <p>
 	    <?php

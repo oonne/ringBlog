@@ -63,6 +63,7 @@ class m130524_201442_init extends Migration
             'blog_title' => $this->string(255)->notNull(),
             'blog_category' => $this->integer()->notNull(),
             'blog_content' => $this->text()->notNull(),
+            'blog_date' => $this->string(16)->notNull(),
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'pageviews' => $this->integer()->notNull(),
             'created_at' => $this->integer()->notNull(),
@@ -76,7 +77,7 @@ class m130524_201442_init extends Migration
         $hello->blog_category = 1;
         $hello->blog_content = 'Hello world! Welcome to RingBlog!';
         $hello->pageviews = 0;
-        $hello->created_at = $hello->updated_at = time();
+        $hello->created_at = $hello->updated_at = $hello->blog_date = time();
         $hello->last_editor = 1;
 
         $this->insert('{{%blog}}',$hello->toArray());

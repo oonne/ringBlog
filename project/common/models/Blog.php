@@ -37,6 +37,8 @@ class Blog extends ActiveRecord
             [['blog_title'], 'string', 'max' => 255],
             [['blog_content'], 'string'],
 
+            [['blog_date'], 'date', 'format' => 'yyyy-MM-dd'],
+
             [
                 ['blog_category'],
                 'exist',
@@ -59,12 +61,13 @@ class Blog extends ActiveRecord
             'blog_title' => '标题',
             'blog_category' => '分类',
             'blog_content' => '内容',
+            'blog_date' => '日期',
             'status' => '状态',
             'pageviews' => '点击量',
             'created_at' => '创建时间',
             'updated_at' => '更新时间',
             'last_editor' => '最后修改人ID',
-            'createdTimeRange' => '创建时间',
+            'dateRange' => '日期',
             'updatedTimeRange' => '更新时间',
         ];
     }

@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use backend\widgets\Alert;
 use common\models\Category;
+use yii\jui\DatePicker;
 
 $this->title = $model->isNewRecord ? '添加' : $model->blog_title;
 ?>
@@ -23,6 +24,11 @@ $this->title = $model->isNewRecord ? '添加' : $model->blog_title;
     <div class="col-lg-12">
 	    <?php $form = ActiveForm::begin(); ?>
         <?= $form->field($model, 'blog_title') ?>
+        <?= $form->field($model, 'blog_date')->widget(DatePicker::className(), [
+            'options' => ['class' => 'form-control'],
+            'clientOptions' => ['firstDay' => 0],
+            'dateFormat' => 'yyyy-MM-dd'
+        ]) ?>
         <?= $form->field($model, 'blog_category')->dropDownList(Category::getKeyValuePairs()) ?>
         <div class="form-group">
 	        <?= \crazydb\ueditor\UEditor::widget([
