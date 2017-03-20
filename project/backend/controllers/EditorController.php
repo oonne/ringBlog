@@ -10,44 +10,41 @@ use crazydb\ueditor\UEditorController;
  */
 class EditorController extends UEditorController
 {   
+    public $config;
+
+    public function init()
+    {
+        //CSRF 基于 POST 验证，UEditor 无法添加自定义 POST 数据，同时由于这里不会产生安全问题，故简单粗暴地取消 CSRF 验证。
+        //如需 CSRF 防御，可以使用 server_param 方法，然后在这里将 Get 的 CSRF 添加到 POST 的数组中。。。
+        Yii::$app->request->enableCsrfValidation = false;
+
+        //当客户使用低版本IE时，会使用swf上传插件，维持认证状态可以参考文档UEditor「自定义请求参数」部分。
+        //http://fex.baidu.com/ueditor/#server-server_param
+
+        //保留UE默认的配置引入方式
+        if (file_exists(__DIR__ . '/../config/UEditor.json'))
+            $CONFIG = json_decode(preg_replace("/\/\*[\s\S]+?\*\//", '', file_get_contents(__DIR__ . '/../config/UEditor.json')), true);
+        else
+            $CONFIG = [];
+
+        if (!is_array($this->config))
+            $this->config = [];
+
+        if (!is_array($CONFIG))
+            $CONFIG = [];
+
+        $default = [
+            // Custom config of ueditor
+            // @see http://fex.baidu.com/ueditor/#server-config
+        ];
+        $this->config = $this->config + $default + $CONFIG;
+-
 
     public function actionConfig()
     {
-        $this->config['imagePathFormat'] = '/uploads/{yyyy}{mm}{dd}{time}{rand:6}';
-        $this->config['filePathFormat'] = '/uploads/{yyyy}{mm}{dd}{time}{filename}_{rand:6}';
         $this->config['imageUrlPrefix'] = 'http://'. Yii::$app->params['blogUrl'];
         $this->config['fileUrlPrefix'] = 'http://'. Yii::$app->params['blogUrl'];
         return $this->show($this->config);
-    }
-
-    /**
-     * 上传图片
-     */
-    public function actionUploadImage()
-    {
-        $config = [
-            'pathFormat' => '/../../frontend/web/uploads/{yyyy}{mm}{dd}{time}{rand:6}',
-            'maxSize' => $this->config['imageMaxSize'],
-            'allowFiles' => $this->config['imageAllowFiles']
-        ];
-        $fieldName = $this->config['imageFieldName'];        
-        $result = $this->upload($fieldName, $config);
-        return $this->show($result);
-    }
-
-    /**
-     * 上传文件
-     */
-    public function actionUploadFile()
-    {
-        $config = [
-            'pathFormat' => '/../../frontend/web/uploads/{yyyy}{mm}{dd}{time}{filename}_{rand:6}',
-            'maxSize' => $this->config['fileMaxSize'],
-            'allowFiles' => $this->config['fileAllowFiles']
-        ];
-        $fieldName = $this->config['fileFieldName'];
-        $result = $this->upload($fieldName, $config);
-        return $this->show($result);
     }
 
     protected function upload($fieldName, $config, $base64 = 'upload')
@@ -61,9 +58,9 @@ class EditorController extends UEditorController
         if (($this->thumbnail or $this->zoom or $this->watermark) && $info['state'] == 'SUCCESS' && in_array($info['type'], ['.png', '.jpg', '.bmp', '.gif'])) {
             $info['thumbnail'] = Yii::$app->request->baseUrl . $this->imageHandle($info['url']);
         }
-        $info['url'] = Yii::$app->request->baseUrl .'/uploads/'. $info['title'];
+        $info['url'] = Yii::$app->request->baseUrl .'/uploads/'. $info['name'];
         $info['original'] = htmlspecialchars($info['original']);
-        $info['width'] = $info['height'] = 500;
+        $info['width'] = $info['height'] = 760;
         return $info;
     }
 }
