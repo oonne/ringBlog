@@ -5,11 +5,6 @@ return [
     'language' => 'zh-CN',
     'sourceLanguage' => 'zh-CN',
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'controllerMap' => [
-        'ueditor' => [
-            'class' => 'crazydb\ueditor\UEditorController',
-        ]
-    ],
     'components' => [
         'cache' => [
             'class' => 'yii\caching\FileCache',

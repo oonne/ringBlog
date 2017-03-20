@@ -11,7 +11,7 @@ use common\models\Blog;
 use backend\models\BlogSearch;
 
 /**
- * Usersuper controller
+ * Blogsuper controller
  */
 class BlogsuperController extends Controller
 {

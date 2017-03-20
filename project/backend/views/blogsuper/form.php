@@ -35,6 +35,7 @@ $this->title = $model->isNewRecord ? '添加' : $model->blog_title;
 			    'model' => $model,
 			    'attribute' => 'blog_content',
 			    'config' => [
+				    'serverUrl' => ['/editor/index'],
 		    		'toolbars' => [
 		    			[
 					        'source', //源代码
@@ -43,6 +44,8 @@ $this->title = $model->isNewRecord ? '添加' : $model->blog_title;
 					        'redo', //重做
 					        'pasteplain', //纯文本粘贴模式
 					        'removeformat', //清除格式
+        					'simpleupload', //单图上传
+        					'attachment', //附件
 						],
 						[
 					        'justifyleft', //居左对齐

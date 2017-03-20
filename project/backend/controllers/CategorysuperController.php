@@ -13,7 +13,7 @@ use common\models\Blog;
 use himiklab\sortablegrid\SortableGridAction;
 
 /**
- * Usersuper controller
+ * Categorysuper controller
  */
 class CategorysuperController extends Controller
 {
