@@ -9,11 +9,7 @@ use common\models\Blog;
 class BlogSearch extends Blog
 {
     public $dateRange;
-    public $_dateFrom;
-    public $_dateTo;
     public $updatedTimeRange;
-    public $_updatedFrom;
-    public $_updatedTo;
 
     public function rules()
     {
@@ -41,17 +37,17 @@ class BlogSearch extends Blog
 
         $date = explode('~', $this->dateRange, 2);
         if (count($date) == 2){
-            $this->_dateFrom = $date[0];
-            $this->_dateTo = $date[1];
-            $query->andFilterWhere(['>=', 'blog_date', $this->_dateFrom ])
-                  ->andFilterWhere(['<=', 'blog_date', $this->_dateTo ]);
+            $_dateFrom = $date[0];
+            $_dateTo = $date[1];
+            $query->andFilterWhere(['>=', 'blog_date', $_dateFrom ])
+                  ->andFilterWhere(['<=', 'blog_date', $_dateTo ]);
         }
         $updatedTime = explode('~', $this->updatedTimeRange, 2);
         if (count($updatedTime) == 2){
-            $this->_updatedFrom = strtotime($updatedTime[0]);
-            $this->_updatedTo = strtotime($updatedTime[1])+86400;
-            $query->andFilterWhere(['>=', 'updated_at', $this->_updatedFrom ])
-                  ->andFilterWhere(['<', 'updated_at', $this->_updatedTo ]);
+            $_updatedFrom = strtotime($updatedTime[0]);
+            $_updatedTo = strtotime($updatedTime[1])+86400;
+            $query->andFilterWhere(['>=', 'updated_at', $_updatedFrom ])
+                  ->andFilterWhere(['<', 'updated_at', $_updatedTo ]);
         }
 
         // adjust the query by adding the filters
