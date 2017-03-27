@@ -6,7 +6,7 @@ use yii;
 use crazydb\ueditor\UEditorController;
 
 /**
- * Usersuper controller
+ * UEditor controller
  */
 class EditorController extends UEditorController
 {   
@@ -38,7 +38,10 @@ class EditorController extends UEditorController
             // @see http://fex.baidu.com/ueditor/#server-config
         ];
         $this->config = $this->config + $default + $CONFIG;
--
+        $this->webroot = Yii::getAlias('@webroot');
+        if (!is_array($this->thumbnail))
+            $this->thumbnail = false;
+    }
 
     public function actionConfig()
     {

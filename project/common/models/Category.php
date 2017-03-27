@@ -47,7 +47,7 @@ class Category extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'User ID',
+            'id' => 'Category ID',
             'category_name' => '分类名',
             'category_sequence' => '分类排序',
             'created_at' => '创建时间',
