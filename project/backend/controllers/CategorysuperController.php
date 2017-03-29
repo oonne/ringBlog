@@ -9,8 +9,8 @@ use yii\web\Response;
 use yii\web\BadRequestHttpException;
 use common\models\Category;
 use backend\models\CategorySearch;
-use common\models\Blog;
 use himiklab\sortablegrid\SortableGridAction;
+use common\models\Blog;
 
 /**
  * Categorysuper controller
@@ -63,7 +63,6 @@ class CategorysuperController extends Controller
             if ($model->validate()) {
                 $model->last_editor = Yii::$app->user->id;
                 if ($model->save(false)) {
-                    $model->category_sequence = $model->id;
                     Yii::$app->session->setFlash('success', '添加成功！');
                     return $this->redirect(['index']);
                 } else {

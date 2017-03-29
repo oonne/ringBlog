@@ -33,7 +33,7 @@ $this->title = '分类管理';
             'filterModel' => $searchModel,
             'sortableAction' => ['/categorysuper/sequence'],
             'tableOptions' => ['class' => 'table table-striped table-bordered table-center'],
-            'summaryOptions' => ['tag' => 'p', 'class' => 'text-right text-info'],
+            'summaryOptions' => ['tag' => 'p', 'class' => 'text-right text-muted'],
             'columns' => [
                 [
                     'class' => 'yii\grid\SerialColumn',
