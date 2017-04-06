@@ -68,7 +68,10 @@ class SiteController extends Controller
 
     public function actionBlog($id)
     {    
-        $model = Blog::findOne(['id' => $id, 'status' => Blog::STATUS_ENABLED]);
+        $model = Blog::findOne([
+            'id' => $id,
+            'status' => Blog::STATUS_ENABLED
+        ]);
         
         if (!$model) {
             throw new BadRequestHttpException('请求错误！');

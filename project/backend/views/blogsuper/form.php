@@ -2,8 +2,8 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use backend\widgets\Alert;
-use common\models\Category;
 use yii\jui\DatePicker;
+use common\models\Category;
 
 $this->title = $model->isNewRecord ? '添加' : $model->blog_title;
 ?>
