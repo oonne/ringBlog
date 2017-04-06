@@ -12,5 +12,5 @@ The minimum requirement by Yii is that your Web server supports PHP 5.4 .
 3.在project目录下运行"composer install"。composer将帮您安装所需的插件和依赖；
 4.运行 init 对系统进行初始化；
 5.打开project\common\config目录，创建main-local.php文件，填入您的数据库信息。您还可以通过修改params.php和params-local.php进一步修改您博客的设置；
-6.在project目录下运行"yii migrate/up"，这个命令将帮您初始化数据库；
+6.在project目录下运行"php yii migrate/up"，这个命令将帮您初始化数据库；
 7.访问您的博客后台，初始的帐号和密码是"admin"。
