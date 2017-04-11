@@ -3,6 +3,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use backend\widgets\Alert;
 use yii\jui\DatePicker;
+use crazydb\ueditor\UEditor;
 use common\models\Category;
 
 $this->title = $model->isNewRecord ? '添加' : $model->blog_title;
@@ -31,7 +32,7 @@ $this->title = $model->isNewRecord ? '添加' : $model->blog_title;
         ]) ?>
         <?= $form->field($model, 'blog_category')->dropDownList(Category::getKeyValuePairs()) ?>
         <div class="form-group">
-	        <?= \crazydb\ueditor\UEditor::widget([
+	        <?= UEditor::widget([
 			    'model' => $model,
 			    'attribute' => 'blog_content',
 			    'config' => [
