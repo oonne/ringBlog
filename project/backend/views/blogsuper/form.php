@@ -50,8 +50,8 @@ $this->title = $model->isNewRecord ? '添加' : $model->blog_title;
 						],
 						[
 					        'justifyleft', //居左对齐
-					        'justifyright', //居右对齐
 					        'justifycenter', //居中对齐
+					        'justifyright', //居右对齐
 					        'justifyjustify', //两端对齐
 					        'insertorderedlist', //有序列表
 					        'insertunorderedlist', //无序列表
