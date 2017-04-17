@@ -35,6 +35,9 @@ body {
     max-width: 760px;
     overflow: hidden;
 }
+.container ul, .container ol {
+    margin-left: 1.5rem;
+}
 
 /* Footer */
 .footer {
