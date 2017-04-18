@@ -109,7 +109,7 @@ class CategorysuperController extends Controller
             throw new BadRequestHttpException('请求错误！');
         }
 
-        $blog = Blog::find()->where(['blog_category' => $id])->count();
+        $blog = Blog::find()->where(['blog_category' => $id])->exists();
         if ( $blog ) {
             Yii::$app->session->setFlash('danger', '该分类下有内容，不能删除！');
         } else {
