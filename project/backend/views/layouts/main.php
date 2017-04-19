@@ -20,8 +20,8 @@ $menu = [
         'label' => '博客',
         'url' => '#',
         'items' => [
-            'category' => ['label' => '分类管理', 'url' => ['categorysuper/index'], 'active' => in_array($route, ['categorysuper/index', 'categorysuper/create-category', 'categorysuper/update-category'])],
-            'blog' => ['label' => '博客管理', 'url' => ['blogsuper/index'], 'active' => in_array($route, ['blogsuper/index', 'blogsuper/create-blog', 'blogsuper/update-blog', 'blogsuper/view-blog'])],
+            'categorysuper' => ['label' => '分类管理', 'url' => ['categorysuper/index'], 'active' => in_array($route, ['categorysuper/index', 'categorysuper/create-category', 'categorysuper/update-category'])],
+            'blogsuper' => ['label' => '博客管理', 'url' => ['blogsuper/index'], 'active' => in_array($route, ['blogsuper/index', 'blogsuper/create-blog', 'blogsuper/update-blog', 'blogsuper/view-blog'])],
         ]
     ],
 ];
