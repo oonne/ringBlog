@@ -12,7 +12,7 @@ $menu = [
         'label' => '系统',
         'url' => '#',
         'items' => [
-            'home' => ['label' => '系统信息', 'url' => ['site/index'], 'active' => in_array($route, ['site/index'])],
+            'site' => ['label' => '系统信息', 'url' => ['site/index'], 'active' => in_array($route, ['site/index'])],
             'usersuper' => ['label' => '用户管理', 'url' => ['usersuper/index'], 'active' => in_array($route, ['usersuper/index', 'usersuper/create-user', 'usersuper/update-user'])],
         ]
     ],
