@@ -12,6 +12,9 @@ html,body {
 .table-center > tbody > tr > td {
     text-align: center;
 }
+td .btn {
+    margin: 3px;
+}
 .date-range-container{
     overflow: hidden;
 }
