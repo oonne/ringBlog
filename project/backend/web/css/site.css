@@ -13,7 +13,7 @@ html,body {
     text-align: center;
 }
 td .btn {
-    margin: 3px;
+    margin: 3px 0;
 }
 .date-range-container{
     overflow: hidden;
