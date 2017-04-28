@@ -7,6 +7,7 @@
 html,body {
     height: 100%;
     background-color: #f8f8f8;
+    font-size: 14px;
 }
 .table-center > thead > tr > th,
 .table-center > tbody > tr > td {
@@ -122,4 +123,12 @@ td .btn {
 .sidebar .nav-second-level li.active a{
     color: #fff;
     background-color: #4a4a4a;
+}
+
+/*博客*/
+.blog-content{
+    max-width: 720px;
+}
+.blog-content ul, .blog-content ol {
+    margin-left: 1.5rem;
 }
