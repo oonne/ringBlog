@@ -12,6 +12,9 @@ body {
 .table-center > tbody > tr > td {
     text-align: center;
 }
+a, a:hover, a:active, a:visited {
+    text-decoration: none;
+}
 
 /* Nav */
 .ring-nav .navbar-brand {
@@ -60,7 +63,7 @@ body {
 /* Catelog */
 .ring-catelog-blog {
     display: block;
-    margin-bottom: 60px;
+    margin-bottom: 100px;
     color: #4f4f4f;
 }
 .ring-catelog-blog:hover {
