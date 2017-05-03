@@ -5,7 +5,7 @@ use yii\widgets\Pjax;
 $this->title = Yii::$app->params['blogName'];
 ?>
 <div class="site-index">
-    <div class="body-content">
+    <ul class="body-content">
         <?php Pjax::begin() ?>
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
@@ -16,5 +16,5 @@ $this->title = Yii::$app->params['blogName'];
             'itemView' => '_catelog',
         ]) ?>
         <?php Pjax::end() ?>
-    </div>
+    </ul>
 </div>

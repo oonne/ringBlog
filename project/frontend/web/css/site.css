@@ -12,7 +12,8 @@ body {
 .table-center > tbody > tr > td {
     text-align: center;
 }
-a, a:hover, a:active, a:visited {
+a:link, a:hover, a:active, a:visited {
+    color: #4f4f4f;
     text-decoration: none;
 }
 
@@ -65,9 +66,9 @@ a, a:hover, a:active, a:visited {
     display: block;
     margin-bottom: 100px;
     color: #4f4f4f;
+    cursor: pointer;
 }
 .ring-catelog-blog:hover {
-    text-decoration: none;
     color: #333;
 }
 .ring-catelog-category {

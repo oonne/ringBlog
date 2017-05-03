@@ -38,6 +38,7 @@ AppAsset::register($this);
 <?= $this->render('_foot') ?>
 <?= ScrollTop::widget() ?>
 <?php $this->endBody() ?>
+
 </body>
 </html>
 <?php $this->endPage() ?>
