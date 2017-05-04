@@ -138,7 +138,7 @@ $this->title = '博客管理';
                             return Html::a('修改', ['update-blog', 'id' => $key], ['class' => 'btn btn-warning btn-xs']);
                         },
                         'delete' => function ($url, $model, $key) {
-                            return Html::a('删除', ['delete-blog', 'id' => $key], ['class' => 'btn btn-danger btn-xs']);
+                            return Html::a('删除', ['delete-blog', 'id' => $key], ['class' => 'btn btn-danger btn-xs', 'data-confirm' => Yii::t('yii', '确定删除“'.$model->blog_title.'”吗？')]);
                         },
                     ]
                 ]
