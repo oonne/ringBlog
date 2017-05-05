@@ -77,6 +77,7 @@ class m130524_201442_init extends Migration
         $hello->blog_category = 1;
         $hello->blog_content = 'Hello world! Welcome to RingBlog!';
         $hello->blog_date = date("Y-m-d", time());
+        $hello->status = Blog::STATUS_ENABLED;
         $hello->pageviews = 0;
         $hello->created_at = $hello->updated_at = time();
         $hello->last_editor = 1;
