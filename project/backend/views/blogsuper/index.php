@@ -65,10 +65,11 @@ $this->title = '博客管理';
                 [
                     'attribute' => 'blog_category',
                     'headerOptions' => ['class' => 'col-md-1'],
+                    'format' => 'html',
                     'filter' => Category::getKeyValuePairs(),
                     'filterInputOptions' => ['class' => 'form-control input-sm'],
                     'value' => function ($model, $key, $index, $column) {
-                        return $model->category->category_name;
+                        return $model->category ? $model->category->category_name : '<b class="text-danger">分类错误</b>';
                     }
                 ],
                 [

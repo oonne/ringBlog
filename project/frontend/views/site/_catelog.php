@@ -8,7 +8,7 @@ use common\models\Category;
     	<?= Html::encode($model->blog_title) ?>
     </h1>
     <p>
-    	<span class="ring-catelog-category"><?= Html::encode($model->category->category_name) ?></span>
+    	<span class="ring-catelog-category"><?= Html::encode($model->category ? $model->category->category_name : '') ?></span>
     	<span class="ring-catelog-time"><?= Html::encode($model->blog_date) ?></span>
     </p>
     <p>
