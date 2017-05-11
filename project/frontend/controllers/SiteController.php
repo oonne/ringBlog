@@ -74,7 +74,11 @@ class SiteController extends Controller
         ]);
         
         if (!$model) {
-            throw new BadRequestHttpException('请求错误！');
+            // throw new BadRequestHttpException('请求错误！');
+            return $this->render('error', [
+                'name' => '查无分类博客',
+                'message' => '内容已被作者删除',
+            ]);
         }
 
         $model->addPageviews();
