@@ -24,6 +24,7 @@ return [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
+                    'logFile' => '@runtime/logs/app.' . date('Ymd') . '.log',
                 ],
             ],
         ],
