@@ -6,6 +6,7 @@ class Blog extends ActiveRecord
 {
     const STATUS_DISABLED = 0;
     const STATUS_ENABLED = 10;
+    const STATUS_DELETED = 11;
 
     private static $_statusList;
     /**
@@ -69,6 +70,7 @@ class Blog extends ActiveRecord
             'last_editor' => '最后修改人ID',
             'dateRange' => '日期',
             'updatedTimeRange' => '更新时间',
+            'deletedTimeRange' => '删除时间',
         ];
     }
 

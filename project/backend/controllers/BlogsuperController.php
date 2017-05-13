@@ -110,18 +110,14 @@ class BlogsuperController extends Controller
             throw new BadRequestHttpException('请求错误！');
         }
 
-        $transaction = Yii::$app->db->beginTransaction();
-        try {
-            if (!$model->delete()) {
-                throw new \Exception('删除失败！');
-            }
+        $model->status = Blog::STATUS_DELETED;
+        $model->last_editor = Yii::$app->user->id;
 
-            $transaction->commit();
-            Yii::$app->session->setFlash('success', '删除成功！');
+        if ($model->save(false)) {
+            Yii::$app->session->setFlash('success', '已删除！');
             return $this->redirect(['index']);
-        } catch (\Exception $e) {
-            $transaction->rollBack();
-            Yii::$app->session->setFlash('danger', $e->getMessage());
+        } else {
+            Yii::$app->session->setFlash('danger', '删除失败。');
         }
         
         return $this->redirect(['index']);

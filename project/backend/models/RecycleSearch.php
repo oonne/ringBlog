@@ -6,22 +6,22 @@ use yii\data\ActiveDataProvider;
 use common\helpers\Query as QueryHelper;
 use common\models\Blog;
 
-class BlogSearch extends Blog
+class RecycleSearch extends Blog
 {
     public $dateRange;
-    public $updatedTimeRange;
+    public $deletedTimeRange;
 
     public function rules()
     {
         // only fields in rules() are searchable
         return [
-            [['blog_title','blog_content', 'pageviews', 'blog_category', 'status', 'dateRange', 'updatedTimeRange'], 'safe']
+            [['blog_title','blog_content', 'pageviews', 'blog_category', 'dateRange', 'deletedTimeRange'], 'safe']
         ];
     }
 
     public function Search($params)
     {
-        $query = Blog::find()->where(['<>', 'status', Blog::STATUS_DELETED]);
+        $query = Blog::find()->where(['status' => Blog::STATUS_DELETED]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -42,18 +42,17 @@ class BlogSearch extends Blog
             $query->andFilterWhere(['>=', 'blog_date', $_dateFrom ])
                   ->andFilterWhere(['<=', 'blog_date', $_dateTo ]);
         }
-        $updatedTime = explode('~', $this->updatedTimeRange, 2);
-        if (count($updatedTime) == 2){
-            $_updatedFrom = strtotime($updatedTime[0]);
-            $_updatedTo = strtotime($updatedTime[1])+86400;
-            $query->andFilterWhere(['>=', 'updated_at', $_updatedFrom ])
-                  ->andFilterWhere(['<', 'updated_at', $_updatedTo ]);
+        $deletedTime = explode('~', $this->deletedTimeRange, 2);
+        if (count($deletedTime) == 2){
+            $_deletedFrom = strtotime($deletedTime[0]);
+            $_deletedTo = strtotime($deletedTime[1])+86400;
+            $query->andFilterWhere(['>=', 'updated_at', $_deletedFrom ])
+                  ->andFilterWhere(['<', 'updated_at', $_deletedTo ]);
         }
 
         // adjust the query by adding the filters
         $query->andFilterWhere(['like', 'blog_title', $this->blog_title])
               ->andFilterWhere(['like', 'blog_content', $this->blog_content])
-              ->andFilterWhere(['status' => $this->status])
               ->andFilterWhere(['blog_category' => $this->blog_category]);
 
         return $dataProvider;

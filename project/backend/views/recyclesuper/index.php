@@ -9,16 +9,13 @@ use backend\widgets\Alert;
 use common\models\Category;
 use common\models\Blog;
 
-$this->title = '博客管理';
+$this->title = '回收站';
 ?>
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header"><?= Html::encode($this->title) ?></h1>
     </div>
 </div>
-<p>
-    <?= Html::a('新建博客', ['blogsuper/create-blog'], ['class' => 'btn btn-success']) ?>
-</p>
 <div class="row">
     <div class="col-lg-12">
         <div class="alert-wrapper">
@@ -73,16 +70,6 @@ $this->title = '博客管理';
                     }
                 ],
                 [
-                    'attribute' => 'status',
-                    'format' => 'raw',
-                    'filter' => Blog::getStatusList(),
-                    'filterInputOptions' => ['class' => 'form-control input-sm'],
-                    'headerOptions' => ['class' => 'col-md-1'],
-                    'value' => function ($model, $key, $index, $column) {
-                        return Html::dropDownList('status', $model->status, Blog::getStatusList(), ['data-id' => $key]);
-                    }
-                ],
-                [
                     'attribute' => 'dateRange',
                     'filter' => '<div class="drp-container">' . DateRangePicker::widget([
                         'model' => $searchModel,
@@ -105,10 +92,10 @@ $this->title = '博客管理';
                     }
                 ],
                 [
-                    'attribute' => 'updatedTimeRange',
+                    'attribute' => 'deletedTimeRange',
                     'filter' => '<div class="drp-container">' . DateRangePicker::widget([
                         'model' => $searchModel,
-                        'attribute' => 'updatedTimeRange',
+                        'attribute' => 'deletedTimeRange',
                         'presetDropdown' => true,
                         'hideInput' => true,
                         'containerOptions' => ['class' => 'drp-container input-group date-range-container'],
@@ -130,16 +117,16 @@ $this->title = '博客管理';
                     'class' => 'yii\grid\ActionColumn',
                     'header' => '操作',
                     'headerOptions' => ['class' => 'col-md-2'],
-                    'template' => '{view} {update} {delete}',
+                    'template' => '{view} {recovery} {delete}',
                     'buttons' => [
                         'view' => function ($url, $model, $key) {
-                            return Html::a('查看', ['view-blog', 'id' => $key], ['class' => 'btn btn-info btn-xs']);
+                            return Html::a('查看', ['view-recycle', 'id' => $key], ['class' => 'btn btn-info btn-xs']);
                         },
-                        'update' => function ($url, $model, $key) {
-                            return Html::a('修改', ['update-blog', 'id' => $key], ['class' => 'btn btn-warning btn-xs']);
+                        'recovery' => function ($url, $model, $key) {
+                            return Html::a('恢复', ['recovery-recycle', 'id' => $key], ['class' => 'btn btn-warning btn-xs']);
                         },
                         'delete' => function ($url, $model, $key) {
-                            return Html::a('删除', ['delete-blog', 'id' => $key], ['class' => 'btn btn-danger btn-xs']);
+                            return Html::a('删除', ['delete-recycle', 'id' => $key], ['class' => 'btn btn-danger btn-xs', 'data-confirm' => Yii::t('yii', '确定彻底删除“'.$model->blog_title.'”吗？（无法恢复）')]);
                         },
                     ]
                 ]
@@ -148,27 +135,3 @@ $this->title = '博客管理';
         <?php Pjax::end() ?>
     </div>
 </div>
-<?php
-$statusUrl = Url::to(['/blogsuper/status']);
-$js = <<<JS
-var statusHandle = function () {
-    var id = $(this).attr('data-id');
-    var status = $(this).val();
-    $.ajax({
-        url: '{$statusUrl}',
-        type: 'get',
-        dataType: 'json',
-        data: {id: id, status: status},
-        success: function () {},
-        error: function () {}
-    });
-};
-$('select[name="status"]').change(statusHandle);
-
-$(document).on('pjax:complete', function() {
-    $('select[name="status"]').change(statusHandle);
-})
-JS;
-
-$this->registerJs($js);
-?>
