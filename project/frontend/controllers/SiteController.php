@@ -82,7 +82,6 @@ class SiteController extends Controller
         }
 
         $model->addPageviews();
-        $model->save(false);
 
         return $this->render('blog', [
             'blog' => $model

@@ -76,7 +76,7 @@ class Blog extends ActiveRecord
 
     public function addPageviews()
     {
-        $this->pageviews += 1;
+        $this->updateAllCounters(['pageviews' => 1], ['id' => $this->id]);
     }
 
     public function getId()
