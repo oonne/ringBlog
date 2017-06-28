@@ -44,10 +44,8 @@ class BlogSearch extends Blog
         }
         $updatedTime = explode('~', $this->updatedTimeRange, 2);
         if (count($updatedTime) == 2){
-            $_updatedFrom = strtotime($updatedTime[0]);
-            $_updatedTo = strtotime($updatedTime[1])+86400;
-            $query->andFilterWhere(['>=', 'updated_at', $_updatedFrom ])
-                  ->andFilterWhere(['<', 'updated_at', $_updatedTo ]);
+            $query->andFilterWhere(['>=', "FROM_UNIXTIME(`updated_at`, '%Y-%m-%d')", $updatedTime[0] ])
+                  ->andFilterWhere(['<=', "FROM_UNIXTIME(`updated_at`, '%Y-%m-%d')", $updatedTime[1] ]);
         }
 
         // adjust the query by adding the filters

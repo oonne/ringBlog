@@ -44,10 +44,8 @@ class RecycleSearch extends Blog
         }
         $deletedTime = explode('~', $this->deletedTimeRange, 2);
         if (count($deletedTime) == 2){
-            $_deletedFrom = strtotime($deletedTime[0]);
-            $_deletedTo = strtotime($deletedTime[1])+86400;
-            $query->andFilterWhere(['>=', 'updated_at', $_deletedFrom ])
-                  ->andFilterWhere(['<', 'updated_at', $_deletedTo ]);
+            $query->andFilterWhere(['>=', "FROM_UNIXTIME(`updated_at`, '%Y-%m-%d')", $deletedTime[0] ])
+                  ->andFilterWhere(['<=', "FROM_UNIXTIME(`updated_at`, '%Y-%m-%d')", $deletedTime[1] ]);
         }
 
         // adjust the query by adding the filters
