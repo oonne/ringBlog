@@ -25,7 +25,7 @@ td .btn {
     margin-top: 25%;
 }
 
-/* 框架 */
+/* PC端框架 */
 #wrapper {
     width: 100%;
     min-height: 100%;
@@ -123,6 +123,27 @@ td .btn {
 .sidebar .nav-second-level li.active a{
     color: #fff;
     background-color: #4a4a4a;
+}
+
+/* 移动端框架 */
+@media(max-width:768px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        background-color: #333;
+    }
+    .sidebar-logo{
+        display: none;
+    }
+
+    #page-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 768px;
+        overflow: scroll;
+        padding: 0 15px 15px 15px;
+    }
 }
 
 /*博客*/
