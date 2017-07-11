@@ -45,8 +45,8 @@ class EditorController extends UEditorController
 
     public function actionConfig()
     {
-        $this->config['imageUrlPrefix'] = 'http://'. Yii::$app->params['blogUrl'];
-        $this->config['fileUrlPrefix'] = 'http://'. Yii::$app->params['blogUrl'];
+        $this->config['imageUrlPrefix'] = 'https://'. Yii::$app->params['blogUrl'];
+        $this->config['fileUrlPrefix'] = 'https://'. Yii::$app->params['blogUrl'];
         return $this->show($this->config);
     }
 
