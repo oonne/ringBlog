@@ -31,7 +31,7 @@ class SiteController extends Controller
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'created_at' => SORT_DESC
+                    'blog_date' => SORT_DESC
                 ]
             ]
         ]);
@@ -56,7 +56,7 @@ class SiteController extends Controller
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'created_at' => SORT_DESC
+                    'blog_date' => SORT_DESC
                 ]
             ]
         ]);
