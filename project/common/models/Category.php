@@ -3,7 +3,7 @@
 namespace common\models;
 
 use Yii;
-use himiklab\sortablegrid\SortableGridBehavior;
+use oonne\sortablegrid\SortableGridBehavior;
 use yii\db\Query;
 
 class Category extends ActiveRecord

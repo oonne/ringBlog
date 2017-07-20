@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\Pjax;
 use backend\widgets\Alert;
 use common\models\Category;
-use himiklab\sortablegrid\SortableGridView;
+use oonne\sortablegrid\SortableGridView;
 
 $this->title = '分类管理';
 ?>
@@ -37,6 +37,7 @@ $this->title = '分类管理';
                 [
                     'class' => 'yii\grid\SerialColumn',
                     'headerOptions' => ['class' => 'col-md-1'],
+                    'contentOptions' => ['class' => 'sortable-handle'],
                 ],
                 [
                     'attribute' => 'category_name',

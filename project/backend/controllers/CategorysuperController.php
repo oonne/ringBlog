@@ -9,7 +9,7 @@ use yii\web\Response;
 use yii\web\BadRequestHttpException;
 use common\models\Category;
 use backend\models\CategorySearch;
-use himiklab\sortablegrid\SortableGridAction;
+use oonne\sortablegrid\SortableGridAction;
 use common\models\Blog;
 
 /**
