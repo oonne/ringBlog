@@ -37,7 +37,6 @@ $this->title = $blog->blog_title;
                 <?php }} ?>
             <a href="javascript:void(0)" onclick="reply(this,<?php echo $comment->id;?>)" style="margin-left:30px;" >回复</a>
             <hr>
-            <?php } ?>
         </ul>
     </div>
 </div>
