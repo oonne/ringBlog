@@ -14,7 +14,7 @@ class CommentController extends \yii\web\Controller
         if ($comment->save()) {
             return  $this->redirect(Yii::$app->request->referrer);
         }
-        echo "string";
+        var_dump($comment->errors);
     }
 
 }
