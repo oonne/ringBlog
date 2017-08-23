@@ -43,7 +43,7 @@ $this->title = $blog->blog_title;
 </div>
 
 <?php   //评论表单 ?>
-<?= Html::beginForm(['comment/add', 'id' => $post->id], 'post') ?>
+<?= Html::beginForm(['comment/add', 'id' => $blog->id], 'post') ?>
     <h4>输入评论内容</h4>
 <?= \yidashi\markdown\Markdown::widget(['name' => 'comment', 'language' => 'zh'])?>
     <br>
