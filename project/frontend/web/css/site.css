@@ -24,7 +24,7 @@ a:link, a:hover, a:active, a:visited {
     background-size: 36px;
 }
 .ring-nav .container{
-    max-width: 98%;
+    max-width: 760px;
 }
 
 /* Wrap */
@@ -36,7 +36,7 @@ a:link, a:hover, a:active, a:visited {
 }
 .wrap > .container {
     padding: 120px 15px 20px;
-    max-width: 98%;
+    max-width: 760px;
     overflow: hidden;
 }
 .container ul, .container ol {
