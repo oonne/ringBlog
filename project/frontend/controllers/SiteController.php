@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Comment;
+use common\models\Reply;
 use Yii;
 use yii\web\Controller;
 use yii\data\ActiveDataProvider;
@@ -81,10 +83,20 @@ class SiteController extends Controller
             ]);
         }
 
+        $comments = Comment::findAll([
+            'post_id' => $id,
+            'status' => 1]);  //获得该文章所有 status 为 1 的评论
+        $replys = array();
+        foreach ($comments as $comment) {
+            $replys[$comment->id] = Reply::findAll(['comment_id' => $comment->id,'status' => 1]);  //根据评论 id 查找所有 status 为 1 的评论，并赋值给$replys数组，
+        }
+
         $model->addPageviews();
 
         return $this->render('blog', [
-            'blog' => $model
+            'blog' => $model,
+            'comments'=>$comments,    //传递变量到前台
+            'replys' => $replys
         ]);
     }
 }

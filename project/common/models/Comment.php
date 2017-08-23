@@ -14,7 +14,7 @@ use Yii;
  * @property integer $created_at
  * @property integer $updated_at
  */
-class Comment extends \yii\db\ActiveRecord
+class Comment extends ActiveRecord
 {
     /**
      * @inheritdoc
@@ -22,6 +22,16 @@ class Comment extends \yii\db\ActiveRecord
     public static function tableName()
     {
         return 'comment';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            parent::timestampBehavior()
+        ];
     }
 
     /**
