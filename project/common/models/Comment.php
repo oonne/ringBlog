@@ -40,7 +40,7 @@ class Comment extends ActiveRecord
     public function rules()
     {
         return [
-            [['post_id', 'created_at', 'updated_at'], 'required'],
+            [['post_id'], 'required'],
             [['post_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['comment'], 'string', 'max' => 255],
         ];

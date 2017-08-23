@@ -40,7 +40,7 @@ class Reply extends ActiveRecord
     public function rules()
     {
         return [
-            [['comment_id', 'created_at', 'updated_at'], 'required'],
+            [['comment_id'], 'required'],
             [['comment_id', 'status', 'created_at', 'updated_at'], 'integer'],
             [['reply'], 'string', 'max' => 255],
         ];
