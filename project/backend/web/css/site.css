@@ -1,0 +1,155 @@
+/*全局样式*/
+*{
+    margin:0;
+    padding:0;
+    font: 14px/1.7 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+html,body {
+    height: 100%;
+    background-color: #f8f8f8;
+    font-size: 14px;
+}
+.table-center > thead > tr > th,
+.table-center > tbody > tr > td {
+    text-align: center;
+}
+td .btn {
+    margin: 3px 0;
+}
+.date-range-container{
+    overflow: hidden;
+}
+
+/*登录页*/
+.login-panel {
+    margin-top: 25%;
+}
+
+/* PC端框架 */
+#wrapper {
+    width: 100%;
+    min-height: 100%;
+    position: relative;
+    background-color: #fff;
+}
+#page-wrapper {
+    position: inherit;
+    padding: 0 60px 20px 200px;
+    width: 100%;
+    z-index: 1;
+}
+.sidebar {
+    position: fixed;
+    width: 140px;
+    height: 100%;
+    z-index: 10;
+    background-color: #333;
+}
+.sidebar-logo{
+    display: block;
+    background-image: -webkit-linear-gradient(135deg, #333, #333);
+    background-image: linear-gradient(135deg, #333, #333);
+    -webkit-animation: hue 60s linear infinite;
+            animation: hue 60s linear infinite;
+    height: 140px;
+    padding: 10px;
+}
+@-webkit-keyframes hue {
+    from {
+        -webkit-filter: hue-rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+
+    to {
+        -webkit-filter: hue-rotate(-360deg);
+        filter: hue-rotate(-360deg);
+    }
+}
+@keyframes hue {
+    from {
+        -webkit-filter: hue-rotate(0deg);
+        filter: hue-rotate(0deg);
+    }
+
+    to {
+        -webkit-filter: hue-rotate(-360deg);
+        filter: hue-rotate(-360deg);
+    }
+}
+.sidebar-logo img{
+    height: 120px;
+    width: 120px;
+}
+.logo-rotation {
+    display: none;
+    -webkit-animation: rotation linear 30s infinite;
+            animation: rotation linear 30s infinite;
+}
+@-webkit-keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+@keyframes rotation {
+    from {
+        -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}
+.sidebar li a{
+    color: #bbb;
+}
+.sidebar li a:hover,
+.sidebar li a:focus{
+    color: #bbb;
+    background-color: #333;
+}
+.sidebar li.active a{
+    background-color: #333;
+}
+.sidebar .nav-second-level li a {
+    padding-left: 24px;
+    background-color: #444;
+}
+.sidebar .nav-second-level li.active a{
+    color: #fff;
+    background-color: #4a4a4a;
+}
+
+/* 移动端框架 */
+@media(max-width:768px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        background-color: #333;
+    }
+    .sidebar-logo{
+        display: none;
+    }
+
+    #page-wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 768px;
+        overflow: scroll;
+        padding: 0 15px 15px 15px;
+    }
+}
+
+/*博客*/
+.blog-content{
+    max-width: 720px;
+}
+.blog-content ul, .blog-content ol {
+    margin-left: 1.5rem;
+}

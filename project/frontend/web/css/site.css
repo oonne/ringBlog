@@ -1,0 +1,103 @@
+*{
+    margin:0;
+    padding:0;
+    font: 16px/1.7 "Helvetica Neue",Helvetica,Arial,"Microsoft Yahei","Hiragino Sans GB","Heiti SC","WenQuanYi Micro Hei",sans-serif;
+}
+html,
+body {
+    height: 100%;
+    font-size: 16px;
+}
+.table-center > thead > tr > th,
+.table-center > tbody > tr > td {
+    text-align: center;
+}
+a:link, a:hover, a:active, a:visited {
+    color: #4f4f4f;
+    text-decoration: none;
+}
+
+/* Nav */
+.ring-nav .navbar-brand {
+    padding-left: 50px;
+    background: url('/img/logo.png') no-repeat 10px;
+    background-size: 36px;
+}
+.ring-nav .container{
+    max-width: 98%;
+}
+
+/* Wrap */
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -80px;
+    padding: 0 0 80px;
+}
+.wrap > .container {
+    padding: 120px 15px 20px;
+    max-width: 98%;
+    overflow: hidden;
+}
+.container ul, .container ol {
+    margin-left: 1.5rem;
+}
+
+/* Footer */
+.footer {
+    height: 80px;
+}
+.footer > .container {
+    border-top: 1px solid #ddd;
+    padding: 25px 20px 15px;
+    max-width: 760px;
+    text-align: center;
+}
+.footer p, .footer a {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+.footer a {
+    color: #888;
+}
+
+/* Catelog */
+.ring-catelog-blog {
+    display: block;
+    margin-bottom: 100px;
+    color: #4f4f4f;
+    cursor: pointer;
+}
+.ring-catelog-blog:hover {
+    color: #333;
+}
+.ring-catelog-category {
+    font-size: 0.9rem;
+    color: #999;
+    margin-right: 10px;
+}
+.ring-catelog-time {
+    font-size: 0.9rem;
+    color: #bbb;
+}
+.ring-pager-center {
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Blog */
+.ring-blog-author {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin-right: 10px;
+}
+.ring-blog-author a {
+    font-size: 0.9rem;
+    color: #999;
+    text-decoration: none;
+}
+.ring-blog-time {
+    font-size: 0.9rem;
+    color: #bbb;
+}
