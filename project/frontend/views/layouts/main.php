@@ -6,10 +6,17 @@
 use yii\helpers\Html;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
+use \common\assets\SyntaxHighlighterAsset;
 use common\widgets\Alert;
 use oonne\scrollTop\ScrollTop;
 
 AppAsset::register($this);
+SyntaxHighlighterAsset::register($this);
+$script = <<<UEDITOR
+SyntaxHighlighter.defaults['gutter'] = 'false';
+SyntaxHighlighter.all();
+UEDITOR;
+$this->registerJs($script);
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
