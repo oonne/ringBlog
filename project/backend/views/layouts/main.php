@@ -6,6 +6,13 @@ use \common\assets\SyntaxHighlighterAsset;
 
 AppAsset::register($this);
 SyntaxHighlighterAsset::register($this);
+$script = <<<UEDITOR
+SyntaxHighlighter.all();
+UEDITOR;
+$this->registerJs($script);
+
+
+
 
 $route = Yii::$app->requestedAction->uniqueId;
 
@@ -29,11 +36,7 @@ $menu = [
     ],
 ];
 
-$script = <<<UEDITOR
-SyntaxHighlighter.all();
-UEDITOR;
 
-$this->registerJs($script);
 
 ?>
 
