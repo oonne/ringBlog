@@ -62,7 +62,7 @@ return [
             'lang' => 'zh-cn',
             'elementPathEnabled' => false,
             'wordCountMsg' => '当前已输入 {#count} 个字符',
-            'iframeCssUrl' => Yii::getAlias('@web') . '/static/css/ueditor.css',// 自定义编辑器内显示效果
+//            'iframeCssUrl' => Yii::getAlias('@web') . '/static/css/ueditor.css',// 自定义编辑器内显示效果
             'z-index' => 1
         ]
     ]
