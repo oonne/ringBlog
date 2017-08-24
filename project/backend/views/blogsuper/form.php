@@ -39,6 +39,7 @@ $this->title = $model->isNewRecord ? '添加' : $model->blog_title;
 	    		'toolbars' => [
 	    			[
 				        'source', //源代码
+                        'insertcode',//插入代码
 				        'formatmatch', //格式刷
 				        'undo', //撤销
 				        'redo', //重做
