@@ -16,6 +16,7 @@ return [
                     'removeformat', //清除格式
                     'simpleupload', //单图上传
                     'attachment', //附件
+                    'insertframe', //插入Iframe
                 ],
                 [
                     'justifyleft', //居左对齐
