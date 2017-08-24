@@ -29,6 +29,12 @@ $menu = [
     ],
 ];
 
+$script = <<<UEDITOR
+SyntaxHighlighter.all();
+UEDITOR;
+
+$this->registerJs($script);
+
 ?>
 
 <?php $this->beginContent('@app/views/layouts/base.php'); ?>
