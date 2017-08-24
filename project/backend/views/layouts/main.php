@@ -2,8 +2,10 @@
 use yii\helpers\Html;
 use yii\widgets\Menu;
 use backend\assets\AppAsset;
+use \common\assets\SyntaxHighlighterAsset;
 
 AppAsset::register($this);
+SyntaxHighlighterAsset::register($this);
 
 $route = Yii::$app->requestedAction->uniqueId;
 
