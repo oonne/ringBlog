@@ -35,4 +35,5 @@ class SyntaxHighlighterAsset extends AssetBundle
     ];
 
 
+
 }

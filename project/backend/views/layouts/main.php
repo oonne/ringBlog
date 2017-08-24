@@ -10,9 +10,12 @@ $script = <<<UEDITOR
 SyntaxHighlighter.all();
 UEDITOR;
 $this->registerJs($script);
-
-
-
+$cssString = "
+.syntaxhighlighter a, .syntaxhighlighter div, .syntaxhighlighter code, .syntaxhighlighter, .syntaxhighlighter td, .syntaxhighlighter tr, .syntaxhighlighter tbody, .syntaxhighlighter thead, .syntaxhighlighter caption, .syntaxhighlighter textarea {
+    vertical-align: middle!important;
+}
+";
+$this->registerCss($cssString);
 
 $route = Yii::$app->requestedAction->uniqueId;
 
