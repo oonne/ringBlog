@@ -6,6 +6,7 @@ return [
             'serverUrl' => ['/editor/index'],
             'toolbars' => [
                 [
+                    'fullscreen',//全屏
                     'source', //源代码
                     'insertcode',//插入代码
                     'formatmatch', //格式刷
