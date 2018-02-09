@@ -62,7 +62,7 @@ class m130524_201442_init extends Migration
             'id' => $this->primaryKey(),
             'blog_title' => $this->string(255)->notNull(),
             'blog_category' => $this->integer()->notNull(),
-            'blog_content' => $this->text()->notNull(),
+            'blog_content' => $this->getDb()->getSchema()->createColumnSchemaBuilder('longtext'),
             'blog_date' => $this->string(16)->notNull(),
             'status' => $this->smallInteger()->notNull()->defaultValue(10),
             'pageviews' => $this->integer()->notNull()->defaultValue(0),
