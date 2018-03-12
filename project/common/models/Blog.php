@@ -74,11 +74,6 @@ class Blog extends ActiveRecord
         ];
     }
 
-    public function addPageviews()
-    {
-        $this->updateAllCounters(['pageviews' => 1], ['id' => $this->id]);
-    }
-
     public function getId()
     {
         return $this->getPrimaryKey();

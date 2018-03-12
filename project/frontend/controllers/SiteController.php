@@ -81,7 +81,7 @@ class SiteController extends Controller
             ]);
         }
 
-        $model->addPageviews();
+        $model->updateAllCounters(['pageviews' => 1]);
 
         return $this->render('blog', [
             'blog' => $model
