@@ -12,10 +12,6 @@ body {
 .table-center > tbody > tr > td {
     text-align: center;
 }
-a:link, a:hover, a:active, a:visited {
-    color: #4f4f4f;
-    text-decoration: none;
-}
 
 /* Nav */
 .ring-nav .navbar-brand {
