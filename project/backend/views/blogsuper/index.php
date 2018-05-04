@@ -34,6 +34,9 @@ $this->title = '博客管理';
             'filterModel' => $searchModel,
             'tableOptions' => ['class' => 'table table-striped table-bordered table-center'],
             'summaryOptions' => ['tag' => 'p', 'class' => 'text-right text-muted'],
+            'pager' => [
+                'options' => ['class' => 'pagination ring-pager-right']
+            ],
             'columns' => [
                 [
                     'class' => 'yii\grid\SerialColumn',

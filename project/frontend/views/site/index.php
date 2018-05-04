@@ -12,8 +12,8 @@ $this->title = Yii::$app->params['blogName'];
             'dataProvider' => $dataProvider,
             'summaryOptions' => ['class' => 'hidden'],
             'pager' => [
-            	'options' => ['class' => 'pagination ring-pager-center']
-        	],
+                'options' => ['class' => 'pagination ring-pager-center']
+            ],
             'itemView' => '_catelog',
             'emptyText' => Html::tag('div', '找不到内容哦', ['class' => 'alert alert-danger']),
         ]) ?>

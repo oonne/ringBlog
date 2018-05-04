@@ -147,6 +147,9 @@ td .btn {
 }
 
 /*博客*/
+.ring-pager-right{
+    float: right;
+}
 .blog-content{
     max-width: 720px;
 }

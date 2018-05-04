@@ -33,6 +33,9 @@ $this->title = '分类管理';
             'sortableAction' => ['/categorysuper/sequence'],
             'tableOptions' => ['class' => 'table table-striped table-bordered table-center'],
             'summaryOptions' => ['tag' => 'p', 'class' => 'text-right text-muted'],
+            'pager' => [
+                'options' => ['class' => 'pagination ring-pager-right']
+            ],
             'columns' => [
                 [
                     'class' => 'yii\grid\SerialColumn',
