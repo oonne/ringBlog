@@ -47,7 +47,7 @@ class Blog extends ActiveRecord
                 'targetAttribute' => 'id'
             ],
 
-            ['status', 'default', 'value' => self::STATUS_ENABLED],
+            ['status', 'default', 'value' => self::STATUS_DISABLED],
             ['status', 'in', 'range' => [self::STATUS_ENABLED, self::STATUS_DISABLED]],
         ];
     }
