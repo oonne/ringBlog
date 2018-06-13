@@ -33,7 +33,6 @@ body {
 .wrap > .container {
     padding: 120px 15px 20px;
     max-width: 760px;
-    overflow: hidden;
 }
 .container ul, .container ol {
     margin-left: 1.5rem;
