@@ -6,6 +6,7 @@ use yii\web\Controller;
 use yii\data\ActiveDataProvider;
 use yii\web\BadRequestHttpException;
 use common\models\Blog;
+use common\models\Category;
 
 /**
  * Site controller
@@ -43,6 +44,8 @@ class SiteController extends Controller
 
     public function actionCategory($id)
     {    
+        $categoryName = Category::findOne($id)->category_name;
+
         $query = Blog::find()->where([
             'status' => Blog::STATUS_ENABLED
         ])->andFilterWhere([
@@ -61,8 +64,9 @@ class SiteController extends Controller
             ]
         ]);
         
-        return $this->render('index', [
-            'dataProvider' => $dataProvider
+        return $this->render('category', [
+            'dataProvider' => $dataProvider,
+            'categoryName' => $categoryName
         ]);
     }
 
@@ -74,10 +78,9 @@ class SiteController extends Controller
         ]);
         
         if (!$model) {
-            // throw new BadRequestHttpException('请求错误！');
             return $this->render('error', [
-                'name' => '查无分类博客',
-                'message' => '内容已被作者删除',
+                'name' => '内容错误',
+                'message' => '查无相关博客',
             ]);
         }
 
