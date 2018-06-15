@@ -28,7 +28,9 @@ $this->title = '博客管理';
 
 <div class="row">
     <div class="col-lg-12">
-        <?php Pjax::begin() ?>
+        <?php Pjax::begin([
+            'scrollTo' => 0
+        ]) ?>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'filterModel' => $searchModel,

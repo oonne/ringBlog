@@ -7,7 +7,9 @@ $this->title = Yii::$app->params['blogName'];
 ?>
 <div class="site-index">
     <ul class="body-content">
-        <?php Pjax::begin() ?>
+        <?php Pjax::begin([
+            'scrollTo' => 0
+        ]) ?>
         <?= ListView::widget([
             'dataProvider' => $dataProvider,
             'summaryOptions' => ['class' => 'hidden'],
