@@ -156,7 +156,7 @@ class BlogsuperController extends Controller
         if ($model->save(false)) {
 
             // 更新搜索索引
-            if ($status === Blog::STATUS_ENABLED) {
+            if ($status == Blog::STATUS_ENABLED) {
                 Xunsearch::addBlog($model);
             } else {
                 Xunsearch::deleteBlog($model->id);
