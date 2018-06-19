@@ -45,6 +45,7 @@ class BlogsuperController extends Controller
 
     public function actionUpdateIndeks()
     {
+        // 更新全部搜索索引
         Xunsearch::updateAllBlog();
 
         Yii::$app->session->setFlash('success', '搜索索引已更新！');
@@ -60,6 +61,10 @@ class BlogsuperController extends Controller
             if ($model->validate()) {
                 $model->last_editor = Yii::$app->user->id;
                 if ($model->save(false)) {
+
+                    // 增加搜索索引
+                    Xunsearch::addBlog($model);
+
                     Yii::$app->session->setFlash('success', '添加成功！');
                     return $this->redirect(['index']);
                 } else {
@@ -85,6 +90,10 @@ class BlogsuperController extends Controller
             if ($model->validate()) {
                 $model->last_editor = Yii::$app->user->id;
                 if ($model->save(false)) {
+
+                    // 更新搜索索引
+                    Xunsearch::updateBlog($model);
+
                     Yii::$app->session->setFlash('success', '更新成功！');
                     return $this->redirect(['index']);
                 } else {
@@ -123,6 +132,10 @@ class BlogsuperController extends Controller
         $model->last_editor = Yii::$app->user->id;
 
         if ($model->save(false)) {
+
+            // 删除搜索索引
+            Xunsearch::deleteBlog($model->id);
+
             Yii::$app->session->setFlash('success', '已删除！');
             return $this->redirect(['index']);
         } else {
@@ -145,6 +158,14 @@ class BlogsuperController extends Controller
         $model->status = $status;
 
         if ($model->save(false)) {
+
+            // 更新搜索索引
+            if ($status === Blog::STATUS_ENABLED) {
+                Xunsearch::addBlog($model);
+            } else {
+                Xunsearch::deleteBlog($model->id);
+            }
+
             return [
                 'status' => 'success',
                 'data' => []
