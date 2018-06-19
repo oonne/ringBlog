@@ -68,8 +68,9 @@ class SiteController extends Controller
             ]
         ]);
         
-        return $this->render('index', [
-            'dataProvider' => $dataProvider
+        return $this->render('search', [
+            'dataProvider' => $dataProvider,
+            'word' => $word,
         ]);
     }
 

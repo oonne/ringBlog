@@ -22,6 +22,14 @@ body {
 .ring-nav .container{
     max-width: 760px;
 }
+.ring-search {
+    width: 240px;
+}
+@media(max-width:767px) {
+    .ring-search {
+        width: 100%;
+    }
+}
 
 /* Wrap */
 .wrap {
@@ -36,6 +44,9 @@ body {
 }
 .container ul, .container ol {
     margin-left: 1.5rem;
+}
+.body-content {
+    margin-left: 0 !important;
 }
 
 /* Footer */
