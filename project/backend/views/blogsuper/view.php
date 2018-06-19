@@ -9,7 +9,7 @@ $this->title = $model->blog_title;
 	<p>
 		<?php 
 			echo '链接：';
-            echo Html::a(Yii::$app->params['blogUrl'].'site/blog?id='.$model->id, [Yii::$app->params['blogUrl'].'site/blog?id='.$model->id]);
+            echo Html::a(Yii::$app->params['blogUrl'].'/site/blog?id='.$model->id, [Yii::$app->params['blogUrl'].'/site/blog?id='.$model->id]);
 		?>
 	</p>
 	<p>
