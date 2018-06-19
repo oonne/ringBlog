@@ -61,10 +61,6 @@ class BlogsuperController extends Controller
             if ($model->validate()) {
                 $model->last_editor = Yii::$app->user->id;
                 if ($model->save(false)) {
-
-                    // 增加搜索索引
-                    Xunsearch::addBlog($model);
-
                     Yii::$app->session->setFlash('success', '添加成功！');
                     return $this->redirect(['index']);
                 } else {

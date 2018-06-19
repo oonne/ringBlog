@@ -89,7 +89,7 @@ class Xunsearch
     {
         try
         {
-            $model = BlogXunsearch::findOne($blog->uBlogID);
+            $model = BlogXunsearch::findOne($blog->id);
             if (!$model) {
                 throw new \Exception();
             }
