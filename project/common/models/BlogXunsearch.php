@@ -2,9 +2,7 @@
 
 namespace common\models;
 
-use hightman\xunsearch\ActiveRecord;
-
-class BlogXunsearch extends ActiveRecord
+class BlogXunsearch extends \hightman\xunsearch\ActiveRecord
 {
     public static function projectName() {
         return 'ringblog';
