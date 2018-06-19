@@ -17,6 +17,12 @@ $this->title = '博客管理';
 </div>
 <p>
     <?= Html::a('新建博客', ['blogsuper/create-blog'], ['class' => 'btn btn-success']) ?>
+    <?php 
+        // 只有开启xunSearch引擎时才显示更新索引的按钮
+        if (Yii::$app->params['xunSearch']) {
+            echo Html::a('更新索引', ['blogsuper/update-indeks'], ['class' => 'btn btn-warning']);
+        } 
+    ?>
 </p>
 <div class="row">
     <div class="col-lg-12">

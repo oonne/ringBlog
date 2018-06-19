@@ -27,7 +27,8 @@
         "onokumus/metismenu": "*",
         "crazydb/yii2-ueditor": "*",
         "oonne/yii2-sortable-grid-view": "*",
-        "oonne/yii2-scroll-to-top": "*"
+        "oonne/yii2-scroll-to-top": "*",
+        "hightman/xunsearch": "^1.4"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

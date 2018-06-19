@@ -7,6 +7,7 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\web\BadRequestHttpException;
+use common\helpers\Xunsearch;
 use common\models\Blog;
 use backend\models\BlogSearch;
 
@@ -40,6 +41,14 @@ class BlogsuperController extends Controller
             'dataProvider' => $dataProvider,
             'searchModel' => $searchModel
         ]);
+    }
+
+    public function actionUpdateIndeks()
+    {
+        Xunsearch::updateAllBlog();
+
+        Yii::$app->session->setFlash('success', '搜索索引已更新！');
+        return $this->redirect(['index']);
     }
 
     public function actionCreateBlog()
