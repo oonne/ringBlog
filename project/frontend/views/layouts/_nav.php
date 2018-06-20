@@ -30,8 +30,10 @@ echo Nav::widget([
 // 搜索框
 $req = Yii::$app->request->get();
 $word = array_key_exists('word', $req) ? $req['word'] : '';
+$placeholder = Yii::$app->params['xunSearch'] ? '全文搜索' : '标题搜索';
+
 echo Html::beginForm(['/site/search'], 'get', ['class' => 'navbar-form navbar-right input-group ring-search']);
-echo Html::input('text', 'word', $word, ['placeholder' => '全文搜索', 'class' => 'form-control ring-search-word']);
+echo Html::input('text', 'word', $word, ['placeholder' => $placeholder, 'class' => 'form-control ring-search-word']);
 echo Html::tag('span', Html::submitInput('搜索', ['class' => 'btn btn-default']), ['class' => 'input-group-btn']);
 echo Html::endForm();
 
