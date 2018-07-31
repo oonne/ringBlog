@@ -21,7 +21,7 @@ $menu = [
         'url' => '#',
         'items' => [
             'categorysuper' => ['label' => '分类管理', 'url' => ['categorysuper/index'], 'active' => in_array($route, ['categorysuper/index', 'categorysuper/create-category', 'categorysuper/update-category'])],
-            'blogsuper' => ['label' => '博客管理', 'url' => ['blogsuper/index'], 'active' => in_array($route, ['blogsuper/index', 'blogsuper/create-blog', 'blogsuper/update-blog', 'blogsuper/view-blog'])],
+            'blogsuper' => ['label' => '博客管理', 'url' => ['blogsuper/index'], 'active' => in_array($route, ['blogsuper/index', 'blogsuper/create-blog', 'blogsuper/update-blog', 'blogsuper/update-source', 'blogsuper/view-blog'])],
             'recyclesuper' => ['label' => '回收站', 'url' => ['recyclesuper/index'], 'active' => in_array($route, ['recyclesuper/index'])],
         ]
     ],

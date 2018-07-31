@@ -140,13 +140,16 @@ $this->title = '博客管理';
                     'class' => 'yii\grid\ActionColumn',
                     'header' => '操作',
                     'headerOptions' => ['class' => 'col-md-2'],
-                    'template' => '{view} {update} {delete}',
+                    'template' => '{view} {update} {source} {delete}',
                     'buttons' => [
                         'view' => function ($url, $model, $key) {
                             return Html::a('查看', ['view-blog', 'id' => $key], ['class' => 'btn btn-info btn-xs']);
                         },
                         'update' => function ($url, $model, $key) {
                             return Html::a('修改', ['update-blog', 'id' => $key], ['class' => 'btn btn-warning btn-xs']);
+                        },
+                        'source' => function ($url, $model, $key) {
+                            return Html::a('源码', ['update-source', 'id' => $key], ['class' => 'btn btn-warning btn-xs']);
                         },
                         'delete' => function ($url, $model, $key) {
                             return Html::a('删除', ['delete-blog', 'id' => $key], ['class' => 'btn btn-danger btn-xs']);

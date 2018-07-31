@@ -103,6 +103,35 @@ class BlogsuperController extends Controller
         ]);
     }
 
+    public function actionUpdateSource($id)
+    {
+        $model = Blog::findOne($id);
+
+        if (!$model) {
+            throw new BadRequestHttpException('请求错误！');
+        }
+
+        if ($model->load(Yii::$app->request->post())) {
+            if ($model->validate()) {
+                $model->last_editor = Yii::$app->user->id;
+                if ($model->save(false)) {
+
+                    // 更新搜索索引
+                    Xunsearch::updateBlog($model);
+
+                    Yii::$app->session->setFlash('success', '更新成功！');
+                    return $this->redirect(['index']);
+                } else {
+                    Yii::$app->session->setFlash('danger', '更新失败。');
+                }
+            }
+        }
+
+        return $this->render('source', [
+            'model' => $model
+        ]);
+    }
+
     public function actionViewBlog($id)
     {
         $model = Blog::findOne($id);
