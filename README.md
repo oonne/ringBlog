@@ -21,5 +21,5 @@ The minimum requirement by Yii is that your Web server supports PHP 5.4 .
 3. 运行 init 对系统进行初始化，在这一步您可以选择作为开发模式还是生产模式；
 4. 打开project/common/config目录，编辑main-local.php文件，填入您的数据库信息。您还可以通过修改params.php和params-local.php进一步修改您博客的设置；
 5. 在project目录下运行"php yii migrate/up"，这个命令将帮您初始化数据库；
-6.在project/frontend/web目录下创建一个名为"uploads"的文件夹，该文件夹需要写入的权限（777）。您也可以修改project/backend/config/UEditor.json的配置，将上传图片和附件的文件夹改为其他路径；
+6. 在project/frontend/web目录下创建一个名为"uploads"的文件夹，该文件夹需要写入的权限（777）。您也可以修改project/backend/config/UEditor.json的配置，将上传图片和附件的文件夹改为其他路径；
 7. 访问您的博客后台，初始的帐号和密码是"admin"。
