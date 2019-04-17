@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1b5b76b9079179f487172db41f15d349",
+    "content-hash": "856a7f8046b471bb5c28967b72310dfa",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -1093,16 +1093,16 @@
         },
         {
             "name": "onokumus/metismenu",
-            "version": "v3.0.4",
+            "version": "v2.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/onokumus/metismenu.git",
-                "reference": "b96b99f6b2f52bdb8789a18a241cf5d681969b6d"
+                "reference": "d10aefc23f873405b883dac72ef72cb115d1540e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/onokumus/metismenu/zipball/b96b99f6b2f52bdb8789a18a241cf5d681969b6d",
-                "reference": "b96b99f6b2f52bdb8789a18a241cf5d681969b6d",
+                "url": "https://api.github.com/repos/onokumus/metismenu/zipball/d10aefc23f873405b883dac72ef72cb115d1540e",
+                "reference": "d10aefc23f873405b883dac72ef72cb115d1540e",
                 "shasum": ""
             },
             "suggest": {
@@ -1131,7 +1131,7 @@
                 "plugin",
                 "web"
             ],
-            "time": "2019-03-07T17:42:35+00:00"
+            "time": "2018-02-16T20:06:17+00:00"
         },
         {
             "name": "oonne/yii2-scroll-to-top",

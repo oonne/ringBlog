@@ -24,7 +24,7 @@
         "kartik-v/yii2-widget-timepicker": "*",
         "kartik-v/yii2-widget-datetimepicker": "*",
         "kartik-v/yii2-widget-fileinput": "*",
-        "onokumus/metismenu": "*",
+        "onokumus/metismenu": "2.7.4",
         "crazydb/yii2-ueditor": "*",
         "oonne/yii2-sortable-grid-view": "*",
         "oonne/yii2-scroll-to-top": "*",
