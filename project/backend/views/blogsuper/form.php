@@ -2,11 +2,13 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use backend\widgets\Alert;
+use yii\helpers\Url;
 use yii\jui\DatePicker;
 use crazydb\ueditor\UEditor;
 use common\models\Category;
 
-$this->title = $model->isNewRecord ? '添加' : $model->blog_title;
+$isNewRecord = $model->isNewRecord;
+$this->title = $isNewRecord ? '添加' : $model->blog_title;
 ?>
 <div class="row">
     <div class="col-lg-12">
@@ -103,3 +105,29 @@ $this->title = $model->isNewRecord ? '添加' : $model->blog_title;
     </div>
 	<?php ActiveForm::end(); ?>
 </div>
+<?php
+$id = $model->id;
+$saveUrl = Url::to(['/blogsuper/save-blog?id='.$id]);
+$js = <<<JS
+document.addEventListener("keydown", function(e) {
+    if ('{$isNewRecord}') reutrn
+    if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+        e.preventDefault();
+        var blog_title = $('#blog-blog_title').val();
+        var blog_date = $('#blog-blog_date').val();
+        var blog_category = $('#blog-blog_category').val();
+        var content = $('#ueditor_0')[0].contentWindow.document.body.innerHTML;
+        $.ajax({
+            url: '{$saveUrl}',
+            type: 'post',
+            dataType: 'json',
+            data: {blog_title: blog_title, blog_date: blog_date, blog_category: blog_category, blog_content: content},
+            success: function () {},
+            error: function () {}
+        });
+    }
+}, false);
+JS;
+
+$this->registerJs($js);
+?>
