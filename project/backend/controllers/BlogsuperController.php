@@ -106,34 +106,32 @@ class BlogsuperController extends Controller
     public function actionSaveBlog($id)
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
-        
+
         $model = Blog::findOne($id);
         if (!$model) {
             throw new BadRequestHttpException('请求错误！');
         }
 
         $form = Yii::$app->request->post();
-        $model->blog_title = $form['blog_title'];
-        $model->blog_date = $form['blog_date'];
-        $model->blog_category = $form['blog_category'];
-        $model->blog_content = $form['blog_content'];
-        if ($model->validate()) {
-            $model->last_editor = Yii::$app->user->id;
-            if ($model->save(false)) {
+        if ($model->load(Yii::$app->request->post(), '')) {
+            if ($model->validate()) {
+                $model->last_editor = Yii::$app->user->id;
+                if ($model->save(false)) {
 
-                // 更新搜索索引
-                Xunsearch::updateBlog($model);
+                    // 更新搜索索引
+                    Xunsearch::updateBlog($model);
 
-                return [
-                    'status' => 'success',
-                ];
-            } else {
-                return [
-                    'status' => 'fail',
-                    'data' => [
-                        'message' => '更新出错！'
-                    ]
-                ];
+                    return [
+                        'status' => 'success',
+                    ];
+                } else {
+                    return [
+                        'status' => 'fail',
+                        'data' => [
+                            'message' => '更新出错！'
+                        ]
+                    ];
+                }
             }
         }
     }
