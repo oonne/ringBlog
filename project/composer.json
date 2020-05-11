@@ -28,7 +28,8 @@
         "crazydb/yii2-ueditor": "*",
         "oonne/yii2-sortable-grid-view": "*",
         "oonne/yii2-scroll-to-top": "*",
-        "hightman/xunsearch": "^1.4"
+        "hightman/xunsearch": "^1.4",
+        "devgroup/yii2-http2-server-push": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "*",

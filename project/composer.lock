@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2fdf8999c3ae8a0897409c8a5cee9546",
+    "content-hash": "bafe56a2aacf6917498799a8ebf30332",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -339,6 +339,52 @@
                 "yii2"
             ],
             "time": "2017-06-14T07:07:55+00:00"
+        },
+        {
+            "name": "devgroup/yii2-http2-server-push",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DevGroup-ru/yii2-http2-server-push.git",
+                "reference": "d7cae91576ab1a383e501f5764c54b8e0fa0080b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DevGroup-ru/yii2-http2-server-push/zipball/d7cae91576ab1a383e501f5764c54b8e0fa0080b",
+                "reference": "d7cae91576ab1a383e501f5764c54b8e0fa0080b",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "^2.0.6"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "bootstrap": "DevGroup\\ServerPush\\AutomaticServerPush"
+            },
+            "autoload": {
+                "psr-4": {
+                    "DevGroup\\ServerPush\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Kozhevnikov",
+                    "email": "b37hr3z3n@gmail.com"
+                }
+            ],
+            "description": "HTTP/2 server push support for Yii2 Asset Manager",
+            "keywords": [
+                "assetmanager",
+                "http2",
+                "push",
+                "server push",
+                "yii2"
+            ],
+            "time": "2017-11-08T13:47:07+00:00"
         },
         {
             "name": "doctrine/lexer",
