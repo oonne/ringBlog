@@ -4,7 +4,7 @@
             Copyright &copy;  by <a href="<?= Yii::$app->params['authorUrl'] ?>" target="_blank"><?= Yii::$app->params['author'] ?></a>. All Rights Reserved.
             <?php
                 if(Yii::$app->params['beian']){
-                    echo '<a href="http://www.beian.miit.gov.cn/" target="_blank">'.Yii::$app->params['beian'].'</a>';
+                    echo '<a href="https://beian.miit.gov.cn/" target="_blank">'.Yii::$app->params['beian'].'</a>';
                 }
             ?>
         </p>
